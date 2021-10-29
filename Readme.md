@@ -19,11 +19,11 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 
 ## Data structure
 
-# ./src/main.js
+### ./src/main.js
 - window.addEventListener("load", () => {})
 - startGame()
 
-# ./src/classes/Game.js
+### ./src/classes/Game.js
 - Game
 - constructor()
 - gameLoop()
