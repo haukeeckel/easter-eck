@@ -1,14 +1,14 @@
 // Game
 class Game {
   constructor() {
-    this.canvas = document.querySelector("#game-area");
+    this.canvas = gameArea;
     this.ctx = this.canvas.getContext("2d");
 
     this.animationId = null;
     this.gameOver = false;
 
     this.gameTimer = null;
-    this.counter = 60;
+    this.counter = 2;
 
     this.background = new Image();
     this.background.src = "../../images/level/bg_basic.png";
@@ -67,10 +67,15 @@ class Game {
       );
 
       this.ctx.drawImage(this.foreground, 0, 0);
-
+      
+      timer.innerText = `${this.counter} sec`;
       // Game Ends
       if (this.gameOver) {
         cancelAnimationFrame(this.animationId);
+        // TODO
+        gameOverScreen.style.display = "flex";
+        gameArea.style.display = "none";
+        gameStatus.style.display = "none";
         return;
       } else {
         this.animationId = requestAnimationFrame(() => {

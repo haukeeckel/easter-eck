@@ -15,15 +15,75 @@
 }
 /* GENERAL */
 body {
-  background-color: #eb5c46;
+  background-color: #2dc5fa;
 }
 
 main {
   width: 100vw;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-block-end: 2rem;
+}
+
+/* SPLASH SCREEN */
+#splash-screen {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #434343;
+}
+
+#player-name-input {
+  width: 20rem;
+  height: 2.5rem;
+
+  padding-left: 1rem;
+  
+  color: #434343;
+  font-size: 1.4rem;
+
+  border-radius: 15px;
+  border: none;
+  
+}
+
+#starter {
+  width: 14.5rem;
+  height: 4.5rem;
+
+  margin-block-start: 3rem;
+  margin-block-end: 3rem;
+
+  font-size: 2rem;
+  color: #ffffff;
+
+  background-color: #2dc5fa;
+  border: 0.5rem solid #ffffff; 
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+#starter:hover {
+  width: 14.5rem;
+  height: 4.5rem;
+
+  font-size: 2rem;
+  color: #2dc5fa;
+
+  background-color: #ffffff;
+  border: 0.5rem solid #2dc5fa; 
+  border-radius: 15px;
 }
 
 /* GAME STATUS */
@@ -31,7 +91,7 @@ main {
   width: 100vw;
   height: 4rem;
 
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -43,11 +103,65 @@ main {
   background: linear-gradient(to bottom, #434343, #000000);
 }
 
+#game-status span {
+  font-size: 2rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+/* #player-name {
+  
+} */
+
+/* #timer {
+  
+} */
+
+/* #score {
+  
+} */
+
+#easter-eggs {
+  position: absolute;
+  top: 75px;
+  left: 15px;
+
+  display: none; /* init.js will set it to flex  */
+  flex-direction: row;;
+  height: 4rem;
+
+  justify-content: space-between;
+  align-items: center;
+
+  color: beige;
+
+  background-color: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1); 
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+
+}
+
 /* GAME AREA */
 canvas {
+  display: none;
   width: 906px;
   height: 720px;
   border: snow 1px solid;
   background-color: black;
   image-rendering: pixelated;
+
+}
+
+/* GAME OVER */
+#game-over-screen {
+  width: 100vw;
+  height: 100vh;
+
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #434343;
 }
