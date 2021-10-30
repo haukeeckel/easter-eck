@@ -58,7 +58,7 @@ class Game {
       // Game Ends
       if (this.gameOver) {
         cancelAnimationFrame(this.animationId);
-        console.log(this.gameOver)
+        // console.log(this.gameOver)
         return
       } else {
       }
