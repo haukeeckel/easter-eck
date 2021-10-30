@@ -3,8 +3,12 @@ class Game {
   constructor() {
     this.canvas = document.querySelector("#game-area");
     this.ctx = this.canvas.getContext("2d");
-    this.intervalId = 0;
+
+    this.animationId = null;
     this.gameOver = false;
+
+    this.gameTimer = null;
+    this.counter = 5;
 
     this.background = new Image();
     this.background.src = "../../images/level/bg_basic.png";
@@ -48,15 +52,17 @@ class Game {
         adjustGrid(1),
         adjustGrid(2)
       );
-      
+
       this.ctx.drawImage(this.foreground, 0, 0)
 
       // Game Ends
       if (this.gameOver) {
-        cancelAnimationFrame(intervalId);
+        cancelAnimationFrame(this.animationId);
+        console.log(this.gameOver)
+        return
       } else {
       }
-      this.intervalId = requestAnimationFrame(() => {
+      this.animationId = requestAnimationFrame(() => {
         animation();
       });
     };
