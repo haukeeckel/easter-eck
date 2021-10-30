@@ -4,7 +4,9 @@ const startGame = () => {
   game.start();
 };
 
-
+const adjustGrid = (field) => {
+  return field*16
+}
 
 
 window.addEventListener('load', () => {

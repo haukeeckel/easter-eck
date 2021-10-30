@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 
-
 * {
   overflow: hidden;
   box-sizing: border-box;
@@ -50,4 +49,5 @@ canvas {
   height: 450px;
   border: snow 1px solid;
   background-color: black;
+  image-rendering: pixelated;
 }
