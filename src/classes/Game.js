@@ -19,13 +19,13 @@ class Game {
       src: "../../images/character/hero.png",
       srcX: 3,
       srcY: 0,
-      drawX: adjustGrid(3),
-      drawY: adjustGrid(2),
+      drawX: adjustGrid(1),
+      drawY: adjustGrid(1),
       isPlayer: true,
     });
 
     this.egg = new GameObject({
-      src : "../../images/gameObjects/eggs.png",
+      src: "../../images/gameObjects/eggs.png",
       srcX: 3,
       srcY: 0,
       drawX: adjustGrid(3),
@@ -57,13 +57,13 @@ class Game {
       this.ctx.drawImage(
         this.player.sprite,
         adjustGrid(this.player.srcX),
-        adjustGrid(this.player.srcY), 
-        adjustGrid(1), 
-        adjustGrid(2), 
+        adjustGrid(this.player.srcY),
+        adjustGrid(1), // TODO animation
+        adjustGrid(2), // TODO animation
         this.player.x, // adjust Grid by move()
         this.player.y, // adjust Grid by move()
-        adjustGrid(1), 
-        adjustGrid(2)  
+        adjustGrid(1),
+        adjustGrid(2)
       );
 
       this.ctx.drawImage(this.foreground, 0, 0);
@@ -73,10 +73,10 @@ class Game {
         cancelAnimationFrame(this.animationId);
         return;
       } else {
+        this.animationId = requestAnimationFrame(() => {
+          animation();
+        });
       }
-      this.animationId = requestAnimationFrame(() => {
-        animation();
-      });
     };
     animation();
   }
