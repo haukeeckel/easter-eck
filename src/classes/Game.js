@@ -31,12 +31,12 @@ class Game {
 
       this.ctx.drawImage(
         this.player,
-        adjustGrid(3), // src-x
+        adjustGrid(0), // src-x
         adjustGrid(0), // src-y
         adjustGrid(1), // src-width
         adjustGrid(2), // src-height
         adjustGrid(1), // draw-x
-        adjustGrid(7), // draw-y
+        adjustGrid(5), // draw-y
         adjustGrid(1), // draw-width
         adjustGrid(2)  // draw-height
       );
