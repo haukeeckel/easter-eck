@@ -25,11 +25,12 @@ const adjustGrid = (field) => {
 
 // SECTION Movement
 // SECTION Controls
+// Mapping 
 const controls = {
-  ArrowUp: { y: -1 },
-  ArrowRight: { x: 1 },
-  ArrowDown: { y: 1 },
-  ArrowLeft: { x: -1 },
+  ArrowUp: "MoveUp",
+  ArrowRight: "MoveRight",
+  ArrowDown: "MoveDown",
+  ArrowLeft: "MoveLeft",
 };
 // !SECTION
 
@@ -41,7 +42,6 @@ const activateMovement = () => {
     const key = e.code;
     if (!pressedKeys.includes(key)) {
       pressedKeys.unshift(key);
-      console.log(controls[pressedKeys[0]]);
     }
   });
 
