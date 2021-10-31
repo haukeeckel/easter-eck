@@ -4,11 +4,13 @@ class Game {
     this.canvas = gameArea;
     this.ctx = this.canvas.getContext("2d");
 
+    this.score = 0;
+
     this.animationId = null;
     this.gameOver = false;
 
     this.gameTimer = null;
-    this.counter = 120;
+    this.counter = 60;
 
     this.background = new Image();
     this.background.src = "./images/level/bg_basic.png";
@@ -46,13 +48,15 @@ class Game {
       // Player
       this.player.move();
       this.player.draw(this.ctx);
-      
+
       if (this.player.collectEgg(this.egg.x, this.egg.y)) {
-        this.egg.isCollected = true;
-      };
+        this.collected()
+      }
 
       this.ctx.drawImage(this.foreground, 0, 0);
 
+      // DOM
+      score.innerText = `Score: ${this.score}`
       timer.innerText = `${this.counter} sec`;
       // Game Ends
       if (this.gameOver) {
@@ -69,6 +73,14 @@ class Game {
       }
     };
     animation();
+  }
+
+  collected() {
+    this.egg.isCollected = true;
+    this.egg.x = 0;
+    this.egg.y = 0;
+    this.score++;
+    this.counter += 4;
   }
 
   start() {

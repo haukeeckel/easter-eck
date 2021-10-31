@@ -1,7 +1,6 @@
 const startGame = () => {
   const game = new Game();
   game.start();
-
   activateMovement();
 
   game.gameTimer = setInterval(() => {
@@ -15,7 +14,6 @@ const startGame = () => {
   }, 1000);
 
 };
-
 
 // SECTION Eventlistener
 const pressedKeys = [];

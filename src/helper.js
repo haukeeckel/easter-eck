@@ -11,6 +11,8 @@ const controls = {
   ArrowLeft: "MoveLeft",
 };
 
+const controllsArray = Object.keys(controls)
+
 
 const blockedGrids = [
   //[x,y]

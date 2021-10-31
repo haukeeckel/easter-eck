@@ -7,7 +7,7 @@ class GameObject {
     this.x = config.drawX;
     this.y = config.drawY;
   }
-  
+
   draw(ctx) {
     ctx.drawImage(
       this.sprite,
@@ -19,6 +19,6 @@ class GameObject {
       this.y,
       adjustGrid(1),
       adjustGrid(2)
-    )  
+    );
   }
 }

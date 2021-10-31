@@ -8,6 +8,7 @@ const playerNameInput = document.querySelector("#player-name-input");
 const gameStatus = document.querySelector("#game-status");
 const playerName = document.querySelector("#player-name");
 const timer = document.querySelector("#timer");
+const score = document.querySelector("#score");
 const gameArea = document.querySelector("#game-area");
 
 // Game Over

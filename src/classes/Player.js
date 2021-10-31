@@ -17,7 +17,7 @@ class Player extends GameObject {
     this.moveInGrid();
     if (!this.isColliding()) {
       // if the Player is finished Moving and presses a key
-      if (this.toMove === 0 && pressedKeys.length > 0) {
+      if (this.toMove === 0 && this.validKey()) {
         // set Movement to one Grid
         this.toMove = adjustGrid(1);
         // set this.input to mapped Controls Value (main.js)
@@ -43,7 +43,7 @@ class Player extends GameObject {
   isColliding() {
     let collides = false;
 
-    if (pressedKeys.length > 0) {
+    if (this.validKey()) {
       // Get the next aimed Axis and Value
       let testAxis = this.movement[controls[pressedKeys[0]]][0];
       let testValue = this.movement[controls[pressedKeys[0]]][1];
@@ -78,5 +78,9 @@ class Player extends GameObject {
     if (eggX == this.x && eggY == this.y) {
       return true;
     }
+  }
+
+  validKey() {
+    return controllsArray.includes(pressedKeys[0])
   }
 }
