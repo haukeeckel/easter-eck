@@ -4,10 +4,46 @@ class Player extends GameObject {
     this.isPlayer = true;
     this.toMove = 0;
     this.viewDirection = {
-      MoveUp: [0, 1],
-      MoveRight: [0, 0],
-      MoveDown: [0, 3],
-      MoveLeft: [0, 2],
+      MoveUp: [
+        [0, 1],
+        [3, 0],
+        [3, 1],
+        [3, 2],
+        [3, 3],
+        [3, 4],
+        [3, 5],
+        [0, 1],
+      ],
+      MoveRight: [
+        [0, 0],
+        [4, 0],
+        [4, 1],
+        [4, 2],
+        [4, 3],
+        [4, 4],
+        [4, 5],
+        [0, 0],
+      ],
+      MoveDown: [
+        [0, 3],
+        [1, 0],
+        [1, 1],
+        [1, 2],
+        [1, 3],
+        [1, 4],
+        [1, 5],
+        [0, 3],
+      ],
+      MoveLeft: [
+        [0, 2],
+        [2, 0],
+        [2, 1],
+        [2, 2],
+        [2, 3],
+        [2, 4],
+        [2, 5],
+        [0, 1],
+      ],
     };
     this.input = null;
     this.movement = {
@@ -29,8 +65,7 @@ class Player extends GameObject {
         // set this.input to mapped Controls Value (main.js)
         this.input = controls[pressedKeys[0]];
         // set this.srcX /srcY to view direction
-        this.srcX = this.viewDirection[this.input][1];
-        this.srcY = this.viewDirection[this.input][0];
+        console.log(this.toMove);
       }
     }
   }
@@ -43,6 +78,31 @@ class Player extends GameObject {
       const value = this.movement[this.input][1];
       // this.x or this.y + 1 or +-1
       this[axis] += value;
+      if (this.toMove > 14) {
+        this.srcX = this.viewDirection[this.input][0][1];
+        this.srcY = this.viewDirection[this.input][0][0] * 2;
+      } else if (this.toMove > 12) {
+        this.srcX = this.viewDirection[this.input][1][1];
+        this.srcY = this.viewDirection[this.input][1][0] * 2;
+      } else if (this.toMove > 10) {
+        this.srcX = this.viewDirection[this.input][2][1];
+        this.srcY = this.viewDirection[this.input][2][0] * 2;
+      } else if (this.toMove > 8) {
+        this.srcX = this.viewDirection[this.input][3][1];
+        this.srcY = this.viewDirection[this.input][3][0] * 2;
+      } else if (this.toMove > 6) {
+        this.srcX = this.viewDirection[this.input][4][1];
+        this.srcY = this.viewDirection[this.input][4][0] * 2;
+      } else if (this.toMove > 4) {
+        this.srcX = this.viewDirection[this.input][5][1];
+        this.srcY = this.viewDirection[this.input][5][0] * 2;
+      } else if (this.toMove > 2) {
+        this.srcX = this.viewDirection[this.input][6][1];
+        this.srcY = this.viewDirection[this.input][6][0] * 2;
+      } else {
+        this.srcX = this.viewDirection[this.input][0][1];
+        this.srcY = this.viewDirection[this.input][0][0] * 2;
+      }
       // reduce toMove by one, untill he's finished Moving
       this.toMove -= 2;
     }

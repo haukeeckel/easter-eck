@@ -57,7 +57,6 @@ class Game {
       // Player
       this.player.move();
       this.player.draw(this.ctx);
-      console.log(this.egg.remainingTime);
 
       if (this.player.collectEgg(this.egg.x, this.egg.y)) {
         this.collected();
