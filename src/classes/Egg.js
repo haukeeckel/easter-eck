@@ -16,6 +16,7 @@ class Egg extends GameObject {
       this.spawnPoint = this.getSpawnPoint();
       this.x = adjustGrid(this.spawnPoint[0]);
       this.y = adjustGrid(this.spawnPoint[1]);
+      this.srcX = Math.floor(Math.random()*4)
       this.remainingTimeId = null;
       this.setLiveTime();
       this.spawnedEggs++;
