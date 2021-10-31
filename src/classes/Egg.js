@@ -1,14 +1,14 @@
 class Egg extends GameObject {
   constructor(config) {
     super(config);
-    this.remainingTime = 10;
+    this.remainingTime = 6;
     this.remainingTimeId = null;
 
     this.hasSpawnPoint = false;
     this.spawnPoint = [];
 
     this.isDrawn = false;
-    
+
     this.isCollected = false;
   }
 
@@ -20,7 +20,7 @@ class Egg extends GameObject {
       this.setLiveTime();
     }
 
-    if (this.remainingTime > 0) {
+    if (!this.isCollected && this.remainingTime > 0) {
       this.draw(ctx);
     }
   }
@@ -32,9 +32,9 @@ class Egg extends GameObject {
       } else {
         clearInterval(this.remainingTimeId)
         this.hasSpawnPoint = false;
-        this.remainingTime = 10;
+        this.isCollected = false;
+        this.remainingTime = 6;
       }
-      console.log(this.remainingTime);
     }, 1000);
   }
 

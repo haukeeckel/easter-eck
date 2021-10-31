@@ -46,6 +46,10 @@ class Game {
       // Player
       this.player.move();
       this.player.draw(this.ctx);
+      
+      if (this.player.collectEgg(this.egg.x, this.egg.y)) {
+        this.egg.isCollected = true;
+      };
 
       this.ctx.drawImage(this.foreground, 0, 0);
 

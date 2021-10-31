@@ -14,7 +14,6 @@ const startGame = () => {
     }
   }, 1000);
 
-  console.log(game)
 };
 
 

@@ -22,7 +22,6 @@ class Player extends GameObject {
         this.toMove = adjustGrid(1);
         // set this.input to mapped Controls Value (main.js)
         this.input = controls[pressedKeys[0]];
-        console.log();
       }
     }
   }
@@ -73,5 +72,11 @@ class Player extends GameObject {
     }
 
     return collides;
+  }
+
+  collectEgg(eggX, eggY) {
+    if (eggX == this.x && eggY == this.y) {
+      return true;
+    }
   }
 }
