@@ -1,2 +1,6 @@
 images/.raw
+images/character/.raw
+images/gameObjects/.raw
+images/level/.raw
+images/level/interior/.raw
 notes.js

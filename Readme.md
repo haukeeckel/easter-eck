@@ -6,10 +6,10 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 
 
 ## MVP
-- game has one Player that moves to four directions in a room
+- game has one Player that moves to four directions in a room :heavy_check_mark:
 - easter eggs appear randomly in the room
 - collecting easter eggs grants a small amount of bonus time and increase score
-- game ends when the time runs out 
+- game ends when the time runs out :heavy_check_mark:
 
 
 ## Backlog
@@ -21,8 +21,16 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 
 ### ./src/main.js
 - window.addEventListener("load", () => {})
-- adjustGrid()
+- activateMovement()
 - startGame()
+
+### ./src/domElements.js
+- querySelectors
+
+### ./src/helper.js
+- adjustGrid()
+- controlls{}
+- blockedGrids[]
 
 ### ./src/classes/Game.js
 - Game
@@ -30,6 +38,16 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 - gameLoop()
 - start()
 
+### ./src/classes/GameObject.js
+- GameObject
+- constructor()
+  
+### ./src/classes/Player.js
+- Player extends GameObject
+- constructor()
+- move()
+- moveInGrid()
+- isColliding()
 
 
 ## States y States Transitions
@@ -43,7 +61,9 @@ Definition of the different states and their transition (transition functions)
 ## Task
 - HTML
   - Header
+  - Splash Screen
   - Game-Area
+  - Game Over Screen
 - CSS
   - basic styles
 - basic game loop

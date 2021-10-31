@@ -8,24 +8,24 @@ class Game {
     this.gameOver = false;
 
     this.gameTimer = null;
-    this.counter = 2;
+    this.counter = 120;
 
     this.background = new Image();
-    this.background.src = "../../images/level/bg_basic.png";
+    this.background.src = "./images/level/bg_basic.png";
     this.foreground = new Image();
-    this.foreground.src = "../../images/level/fg_basic.png";
+    this.foreground.src = "./images/level/fg_basic.png";
 
-    this.player = new GameObject({
-      src: "../../images/character/hero.png",
+    this.player = new Player({
+      src: "./images/character/hero.png",
       srcX: 3,
       srcY: 0,
       drawX: adjustGrid(1),
       drawY: adjustGrid(1),
-      isPlayer: true,
-    });
+      isPlayer: true,}
+    );
 
     this.egg = new GameObject({
-      src: "../../images/gameObjects/eggs.png",
+      src: "./images/gameObjects/eggs.png",
       srcX: 3,
       srcY: 0,
       drawX: adjustGrid(3),

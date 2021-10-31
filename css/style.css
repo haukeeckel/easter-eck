@@ -145,7 +145,7 @@ h1 {
 /* GAME AREA */
 canvas {
   display: none;
-  width: 906px;
+  width: 912px;
   height: 720px;
   border: snow 1px solid;
   background-color: black;
