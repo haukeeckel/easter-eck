@@ -1,55 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Style -->
-    <link rel="icon" href="./images/icons8-javascript-48.png" />
-    <link rel="stylesheet" href="./css/style.css" />
-    <title>EasterEck</title>
-  </head>
-  <body>
-    <!-- Game Status -->
-    <header id="game-status">
-      <span id="player-name"></span>
-      <span id="timer"></span>
-      <span id="score"></span>
-    </header>
-    <main>
-      <!-- Easter Eggs -->
-      <div id="easter-eggs"></div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Style -->
+  <link rel="icon" href="./images/icons8-javascript-48.png">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>EasterEck</title>
+</head>
+<body>
+  <!-- Game Status -->
+  <header id="game-status">
+    <span id="player-name"></span>
+    <span id="timer"></span>
+    <span id="score"></span>
+  </header>
+  <main>
+    <!-- Easter Eggs -->
+    <div id="easter-eggs">
 
-      <!-- Splash Screen -->
-      <div id="splash-screen">
-        <h1>Easter Eck</h1>
-        <input id="player-name-input" type="text" value="Arno Nym" />
-        <button id="starter">Start</button>
+    </div>
+
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+      <h1>Easter Eck</h1>
+      <input id="player-name-input" type="text" value="Arno Nym">
+      <button id="starter">Start</button>
+    </div>
+
+    <!-- Game -->
+    <canvas width="304px" height="240px" id="game-area"></canvas>
+
+    <!-- Game Over -->
+    <div id="game-over-screen">
+      <h1>Game Over!</h1>
+      <h2>you did a great job!</h2>
+      <p id="summary"></p>
+      <div class="buttons">
+        <button id="restarter">Restart?</button>
+        <button id="quit">Quit</button>
       </div>
+    </div>
+  </main>
 
-      <!-- Game -->
-      <canvas width="304px" height="240px" id="game-area"></canvas>
-
-      <!-- Game Over -->
-      <div id="game-over-screen">
-        <h1>Game Over!</h1>
-        <h2>you did a great job!</h2>
-        <p id="summary"></p>
-        <div class="buttons">
-          <button id="restarter">Restart?</button>
-          <button id="quit">Quit</button>
-        </div>
-      </div>
-    </main>
-
-    <!-- Scripts -->
-    <script src="./src/domElements.js"></script>
-    <script src="./src/helper.js"></script>
-    <script src="./src/classes/GameObject.js"></script>
-    <script src="./src/classes/Egg.js"></script>
-    <script src="./src/classes/EasterEgg.js"></script>
-    <script src="./src/classes/Player.js"></script>
-    <script src="./src/classes/Game.js"></script>
-    <script src="./src/main.js"></script>
-  </body>
+  <!-- Scripts -->
+  <script src="./src/domElements.js"></script>
+  <script src="./src/helper.js"></script>
+  <script src="./src/classes/GameObject.js"></script>
+  <script src="./src/classes/Egg.js"></script>
+  <script src="./src/classes/EasterEgg.js"></script>
+  <script src="./src/classes/Player.js"></script>
+  <script src="./src/classes/Game.js"></script>
+  <script src="./src/main.js"></script>
+</body>
 </html>

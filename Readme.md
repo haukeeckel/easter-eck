@@ -13,12 +13,6 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 - game ends when the time runs out :heavy_check_mark:
 
 
-## Backlog
-- add animation
-- add scoreboard
-- hide as many as possible easter eggs
-
-
 ## Data structure
 
 ### ./src/main.js
@@ -87,7 +81,7 @@ Definition of the different states and their transition (transition functions)
   - draw Player :heavy_check_mark:
   - draw Egg :heavy_check_mark:
   - draw foreground :heavy_check_mark:
-- Game Class
+- Game Class :heavy_check_mark:
   - add timer :heavy_check_mark:
   - config GameOver :heavy_check_mark:
 - Game Object Class
@@ -100,7 +94,4 @@ Definition of the different states and their transition (transition functions)
 - Egg Class :heavy_check_mark:
   - set up properties :heavy_check_mark:
   - set up methods :heavy_check_mark:
-
-
-## Additional Links
 

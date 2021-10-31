@@ -4,7 +4,7 @@ const startGame = () => {
   activateMovement();
 
   game.gameTimer = setInterval(() => {
-    if (game.counter > 0) {
+    if (game.counter > 1) {
       game.counter--;
       // console.log(game.counter)
     } else {

@@ -5,6 +5,7 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
 
     this.score = 0;
+    this.gameDate = Date.now()
 
     this.animationId = null;
     this.gameOver = false;
@@ -37,6 +38,14 @@ class Game {
 
   gameLoop() {
     const animation = () => {
+      // Game Ends
+      if (this.gameOver) {
+        this.handleGameOver();
+      } else {
+        this.animationId = requestAnimationFrame(() => {
+          animation();
+        });
+      }
       // Clear Canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       // Drawings
@@ -59,21 +68,13 @@ class Game {
       // DOM
       score.innerText = `Score: ${this.score}`;
       timer.innerText = `${this.counter} sec`;
-      // Game Ends
-      if (this.gameOver) {
-        this.handleGameOver();
-      } else {
-        this.animationId = requestAnimationFrame(() => {
-          animation();
-        });
-      }
     };
     animation();
   }
 
   collected() {
     clearInterval(this.egg.remainingTimeId);
-    this.egg.remainingTime = 2;
+    this.egg.remainingTime = 3;
     this.egg.hasSpawnPoint = false;
     this.score++;
     this.counter += 1;
