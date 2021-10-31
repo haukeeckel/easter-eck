@@ -8,4 +8,17 @@ class GameObject {
     this.y = config.drawY;
   }
   
+  draw(ctx) {
+    ctx.drawImage(
+      this.sprite,
+      adjustGrid(this.srcX),
+      adjustGrid(this.srcY),
+      adjustGrid(1), // TODO animation
+      adjustGrid(2), // TODO animation
+      this.x,
+      this.y,
+      adjustGrid(1),
+      adjustGrid(2)
+    )  
+  }
 }

@@ -21,10 +21,10 @@ class Game {
       srcY: 0,
       drawX: adjustGrid(1),
       drawY: adjustGrid(1),
-      isPlayer: true,}
-    );
+      isPlayer: true,
+    });
 
-    this.egg = new GameObject({
+    this.egg = new Egg({
       src: "./images/gameObjects/eggs.png",
       srcX: 3,
       srcY: 0,
@@ -41,33 +41,14 @@ class Game {
       this.ctx.drawImage(this.background, 0, 0);
 
       // Eggs
-      this.ctx.drawImage(
-        this.egg.sprite,
-        adjustGrid(0),
-        adjustGrid(0),
-        adjustGrid(1),
-        adjustGrid(2),
-        adjustGrid(3),
-        adjustGrid(2),
-        adjustGrid(1),
-        adjustGrid(2)
-      );
+      this.egg.spawnRandom(this.ctx);
+
       // Player
       this.player.move();
-      this.ctx.drawImage(
-        this.player.sprite,
-        adjustGrid(this.player.srcX),
-        adjustGrid(this.player.srcY),
-        adjustGrid(1), // TODO animation
-        adjustGrid(2), // TODO animation
-        this.player.x, // adjust Grid by move()
-        this.player.y, // adjust Grid by move()
-        adjustGrid(1),
-        adjustGrid(2)
-      );
+      this.player.draw(this.ctx);
 
       this.ctx.drawImage(this.foreground, 0, 0);
-      
+
       timer.innerText = `${this.counter} sec`;
       // Game Ends
       if (this.gameOver) {

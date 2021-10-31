@@ -1,6 +1,6 @@
 class Player extends GameObject {
-  constructor(config){
-    super(config)
+  constructor(config) {
+    super(config);
     this.isPlayer = true;
     this.toMove = 0;
     this.input = null;
@@ -11,7 +11,7 @@ class Player extends GameObject {
       MoveLeft: ["x", -1],
     };
   }
-  
+
   move() {
     // fires every Frame
     this.moveInGrid();
