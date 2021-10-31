@@ -118,6 +118,12 @@ button:hover {
   background: -webkit-linear-gradient(to bottom, #434343, #000000);
   background: linear-gradient(to bottom, #434343, #000000);
 }
+.header-element {
+  width: 33%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 #game-status span {
   font-size: 2rem;
