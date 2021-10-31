@@ -3,7 +3,6 @@ const adjustGrid = (field) => {
   return field * 16;
 };
 
-
 const controls = {
   ArrowUp: "MoveUp",
   ArrowRight: "MoveRight",
@@ -11,8 +10,7 @@ const controls = {
   ArrowLeft: "MoveLeft",
 };
 
-const controllsArray = Object.keys(controls)
-
+const controllsArray = Object.keys(controls);
 
 const blockedGrids = [
   //[x,y]
@@ -98,9 +96,16 @@ const blockedGrids = [
 
 const eggGrids = [
   //[x,y]
-  [6, 5],
+  [2, 5],
+  [3, 11],
+  [6, 4],
+  [7, 2],
   [7, 10],
-  [12, 8],
+  [10, 5],
+  [11, 9],
+  [12, 7],
+  [12, 13],
   [14, 11],
-  [15, 4],
-]
+  [15, 3],
+  [16, 6],
+];

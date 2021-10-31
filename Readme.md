@@ -41,6 +41,7 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 - constructor()
 - gameLoop()
 - collected()
+- handleGameOver()
 - start()
 
 ### ./src/classes/GameObject.js
@@ -103,6 +104,3 @@ Definition of the different states and their transition (transition functions)
 
 ## Additional Links
 
-
-### Trello
-[Link url](https://trello.com/b/7D6vcrSW/easter-eck)

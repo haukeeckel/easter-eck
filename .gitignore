@@ -4,3 +4,5 @@ images/gameObjects/.raw
 images/level/.raw
 images/level/interior/.raw
 notes.js
+
+src/classes/EasterEgg.js

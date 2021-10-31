@@ -1,15 +1,13 @@
 class Egg extends GameObject {
   constructor(config) {
     super(config);
-    this.remainingTime = 6;
+    this.spawnedEggs = 0;
+
+    this.remainingTime = 2;
     this.remainingTimeId = null;
 
     this.hasSpawnPoint = false;
     this.spawnPoint = [];
-
-    this.isDrawn = false;
-
-    this.isCollected = false;
   }
 
   spawnRandom(ctx) {
@@ -17,7 +15,9 @@ class Egg extends GameObject {
       this.spawnPoint = this.getSpawnPoint();
       this.x = adjustGrid(this.spawnPoint[0]);
       this.y = adjustGrid(this.spawnPoint[1]);
+      this.remainingTimeId = null;
       this.setLiveTime();
+      this.spawnedEggs++;
     }
 
     if (!this.isCollected && this.remainingTime > 0) {
@@ -27,13 +27,14 @@ class Egg extends GameObject {
 
   setLiveTime() {
     this.remainingTimeId = setInterval(() => {
-      if (this.remainingTime > 0) {
+      if (this.remainingTime > 1) {
         this.remainingTime--;
       } else {
-        clearInterval(this.remainingTimeId)
+        clearInterval(this.remainingTimeId);
         this.hasSpawnPoint = false;
-        this.isCollected = false;
-        this.remainingTime = 6;
+        this.remainingTime = 2;
+        this.x = 0;
+        this.y = 0;
       }
     }, 1000);
   }

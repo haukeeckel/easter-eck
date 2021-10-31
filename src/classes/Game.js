@@ -10,7 +10,7 @@ class Game {
     this.gameOver = false;
 
     this.gameTimer = null;
-    this.counter = 60;
+    this.counter = 45;
 
     this.background = new Image();
     this.background.src = "./images/level/bg_basic.png";
@@ -48,24 +48,20 @@ class Game {
       // Player
       this.player.move();
       this.player.draw(this.ctx);
+      console.log(this.egg.remainingTime);
 
       if (this.player.collectEgg(this.egg.x, this.egg.y)) {
-        this.collected()
+        this.collected();
       }
 
       this.ctx.drawImage(this.foreground, 0, 0);
 
       // DOM
-      score.innerText = `Score: ${this.score}`
+      score.innerText = `Score: ${this.score}`;
       timer.innerText = `${this.counter} sec`;
       // Game Ends
       if (this.gameOver) {
-        cancelAnimationFrame(this.animationId);
-        // TODO
-        gameOverScreen.style.display = "flex";
-        gameArea.style.display = "none";
-        gameStatus.style.display = "none";
-        return;
+        this.handleGameOver();
       } else {
         this.animationId = requestAnimationFrame(() => {
           animation();
@@ -76,11 +72,21 @@ class Game {
   }
 
   collected() {
-    this.egg.isCollected = true;
-    this.egg.x = 0;
-    this.egg.y = 0;
+    clearInterval(this.egg.remainingTimeId);
+    this.egg.remainingTime = 2;
+    this.egg.hasSpawnPoint = false;
     this.score++;
-    this.counter += 4;
+    this.counter += 1;
+  }
+
+  handleGameOver() {
+    cancelAnimationFrame(this.animationId);
+    summary.innerText = `you've collected ${this.score} of ${this.egg.spawnedEggs}`;
+    gameOverScreen.style.display = "flex";
+    gameArea.style.display = "none";
+    gameStatus.style.display = "none";
+    splashScreen.style.display = "none";
+    return;
   }
 
   start() {

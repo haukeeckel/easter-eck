@@ -5,10 +5,10 @@ class Player extends GameObject {
     this.toMove = 0;
     this.input = null;
     this.movement = {
-      MoveUp: ["y", -1],
-      MoveRight: ["x", 1],
-      MoveDown: ["y", 1],
-      MoveLeft: ["x", -1],
+      MoveUp: ["y", -2],
+      MoveRight: ["x", 2],
+      MoveDown: ["y", 2],
+      MoveLeft: ["x", -2],
     };
   }
 
@@ -35,7 +35,7 @@ class Player extends GameObject {
       // this.x or this.y + 1 or +-1
       this[axis] += value;
       // reduce toMove by one, untill he's finished Moving
-      this.toMove -= 1;
+      this.toMove -= 2;
     }
   }
 
@@ -46,7 +46,7 @@ class Player extends GameObject {
     if (this.validKey()) {
       // Get the next aimed Axis and Value
       let testAxis = this.movement[controls[pressedKeys[0]]][0];
-      let testValue = this.movement[controls[pressedKeys[0]]][1];
+      let testValue = this.movement[controls[pressedKeys[0]]][1] / 2;
 
       if (testAxis == "x") {
         let newX = this.x / 16 + testValue;
@@ -81,6 +81,6 @@ class Player extends GameObject {
   }
 
   validKey() {
-    return controllsArray.includes(pressedKeys[0])
+    return controllsArray.includes(pressedKeys[0]);
   }
 }
