@@ -3,6 +3,12 @@ class Player extends GameObject {
     super(config);
     this.isPlayer = true;
     this.toMove = 0;
+    this.viewDirection = {
+      MoveUp: [0, 1],
+      MoveRight: [0, 0],
+      MoveDown: [0, 3],
+      MoveLeft: [0, 2],
+    };
     this.input = null;
     this.movement = {
       MoveUp: ["y", -2],
@@ -22,6 +28,9 @@ class Player extends GameObject {
         this.toMove = adjustGrid(1);
         // set this.input to mapped Controls Value (main.js)
         this.input = controls[pressedKeys[0]];
+        // set this.srcX /srcY to view direction
+        this.srcX = this.viewDirection[this.input][1];
+        this.srcY = this.viewDirection[this.input][0];
       }
     }
   }
