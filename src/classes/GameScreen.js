@@ -37,7 +37,7 @@ class GameScreen {
 
     this.game.gameTimer = setInterval(() => {
       if (this.game.isGameRunning && this.game.counter > 1) {
-        this.hurryUp()
+        this.hurryUp();
         this.game.counter--;
       } else {
         clearInterval(this.game.gameTimer);
@@ -96,16 +96,18 @@ class GameScreen {
 
   hurryUp() {
     if (this.game.counter == 6) {
-      this.timer.style.animationName= "hurryUp"
-    } 
-    if (this.game.counter == 5 ){
-    this.gameArea.style.animationName= "hurryUp"
+      this.timer.style.animationName = "hurryUp";
+    }
+    if (this.game.counter == 5) {
+      this.gameArea.style.animationName = "hurryUp";
     }
   }
 
   handleGameOver() {
     cancelAnimationFrame(this.game.animationId);
     this.summary.innerText = `you've collected ${this.game.score} of ${this.game.egg.spawnedEggs}`;
+    this.timer.style.animationName = "none";
+    this.gameArea.style.animationName = "none";
     this.gameOverScreen.style.display = "flex";
     this.gameArea.style.display = "none";
     this.gameStatus.style.display = "none";

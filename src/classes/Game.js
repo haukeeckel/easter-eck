@@ -12,7 +12,7 @@ class Game {
 
     this.gameTimer = null;
     this.isGameRunning = true;
-    this.counter = 10;
+    this.counter = 45;
 
     this.level = new Level();
 
