@@ -60,7 +60,7 @@ class GameScreen {
       this.selectedHero = "./images/character/hero3.png";
     });
     this.hero4.addEventListener("focus", () => {
-      this.selectedHero = "./images/character/hero3.png";
+      this.selectedHero = "./images/character/hero4.png";
     });
     this.hero5.addEventListener("focus", () => {
       this.selectedHero = "./images/character/hero5.png";
