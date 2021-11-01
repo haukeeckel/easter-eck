@@ -190,9 +190,10 @@ button:hover {
   
 } */
 
-/* #timer {
-  
-} */
+#timer {
+  box-sizing: content-box;
+  animation-duration: 25s;
+}
 
 /* #score {
   
@@ -226,6 +227,8 @@ canvas {
   border: snow 1px solid;
   background-color: black;
   image-rendering: pixelated;
+  animation-duration: 25s;
+  animation-direction: reverse;
 }
 
 /* GAME OVER */
@@ -239,4 +242,48 @@ canvas {
   align-items: center;
 
   background: #434343;
+}
+
+
+@keyframes hurryUp {
+  from {
+    font-size: 3rem;
+    transform: rotate(-5.5deg);
+  } 
+  10% {
+    transform: rotate(5.5deg);
+  }
+  20% {
+    font-size: 3rem;
+    transform: rotate(-5.5deg);
+  }
+  30% {
+    transform: rotate(5.5deg);
+  }
+  40% {
+    font-size: 3rem;
+    transform: rotate(-5.5deg);
+  }
+  50% {
+    color: #ffbd00;
+    transform: rotate(5.5deg);
+  }
+  60% {
+    font-size: 3rem;
+    transform: rotate(-5.5deg);
+  }
+  70% {
+    transform: rotate(5.5deg);
+  }
+  80% {
+    font-size: 3rem;
+    transform: rotate(-5.5deg);
+  }
+  90% {
+    font-size: 2.5rem;
+    transform: rotate(5deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }

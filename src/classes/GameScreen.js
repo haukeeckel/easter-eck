@@ -37,6 +37,7 @@ class GameScreen {
 
     this.game.gameTimer = setInterval(() => {
       if (this.game.isGameRunning && this.game.counter > 1) {
+        this.hurryUp()
         this.game.counter--;
       } else {
         clearInterval(this.game.gameTimer);
@@ -91,6 +92,15 @@ class GameScreen {
       this.gameOverScreen.style.display = "none";
       this.splashScreen.style.display = "flex";
     });
+  }
+
+  hurryUp() {
+    if (this.game.counter == 6) {
+      this.timer.style.animationName= "hurryUp"
+    } 
+    if (this.game.counter == 5 ){
+    this.gameArea.style.animationName= "hurryUp"
+    }
   }
 
   handleGameOver() {
