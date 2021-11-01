@@ -8,7 +8,25 @@ class Egg extends GameObject {
 
     this.hasSpawnPoint = false;
     this.spawnPoint = [];
+
     this.isSpawnTop = true;
+    this.spawnPointsTop = [
+      [2, 5],
+      [6, 4],
+      [7, 2],
+      [10, 5],
+      [15, 3],
+      [16, 6],
+    ];
+    this.spawnPointsBottom = [
+      //[x,y]
+      [3, 11],
+      [7, 10],
+      [11, 9],
+      [12, 7],
+      [12, 13],
+      [14, 11],
+    ];
   }
 
   spawnRandom(ctx) {
@@ -45,10 +63,14 @@ class Egg extends GameObject {
     this.hasSpawnPoint = true;
     if (this.isSpawnTop) {
       this.isSpawnTop = !this.isSpawnTop;
-      return eggsTop[Math.floor(Math.random() * eggsTop.length)];
+      return this.spawnPointsTop[
+        Math.floor(Math.random() * this.spawnPointsTop.length)
+      ];
     } else {
       this.isSpawnTop = !this.isSpawnTop;
-      return eggBottom[Math.floor(Math.random() * eggBottom.length)];
+      return this.spawnPointsBottom[
+        Math.floor(Math.random() * this.spawnPointsBottom.length)
+      ];
     }
   }
 }

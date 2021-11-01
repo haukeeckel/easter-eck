@@ -11,6 +11,7 @@ class Game {
     this.gameOver = false;
 
     this.gameTimer = null;
+    this.isGameRunning = true;
     this.counter = 45;
 
     this.background = new Image();
