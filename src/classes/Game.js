@@ -14,11 +14,8 @@ class Game {
     this.isGameRunning = true;
     this.counter = 45;
 
-    this.background = new Image();
-    this.background.src = "./images/level/bg_basic.png";
-    this.foreground = new Image();
-    this.foreground.src = "./images/level/fg_basic.png";
-
+    this.level = new Level();
+    
     this.player = new Player({
       src: "./images/character/hero.png",
       srcX: 3,
@@ -26,6 +23,7 @@ class Game {
       drawX: adjustGrid(1),
       drawY: adjustGrid(1),
       isPlayer: true,
+      blockedGrids: this.level.blockedGrids
     });
 
     this.egg = new Egg({
@@ -33,7 +31,7 @@ class Game {
       srcX: 3,
       srcY: 0,
       drawX: adjustGrid(3),
-      drawY: adjustGrid(2),
+      drawY: adjustGrid(2),    
     });
   }
 
@@ -50,7 +48,8 @@ class Game {
       // Clear Canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       // Drawings
-      this.ctx.drawImage(this.background, 0, 0);
+      // Background
+      this.ctx.drawImage(this.level.background, 0, 0);
 
       // Eggs
       this.egg.spawnRandom(this.ctx);
@@ -62,8 +61,8 @@ class Game {
       if (this.player.collectEgg(this.egg.x, this.egg.y)) {
         this.collected();
       }
-
-      this.ctx.drawImage(this.foreground, 0, 0);
+      // Foreground
+      this.ctx.drawImage(this.level.foreground, 0, 0);
 
       // DOM
       score.innerText = `Score: ${this.score}`;

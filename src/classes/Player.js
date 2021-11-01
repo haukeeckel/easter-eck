@@ -52,6 +52,7 @@ class Player extends GameObject {
       MoveDown: ["y", 2],
       MoveLeft: ["x", -2],
     };
+    this.blockedGrids = config.blockedGrids;
   }
 
   move() {
@@ -124,7 +125,7 @@ class Player extends GameObject {
         let newX = this.x / 16 + testValue;
         let newY = this.y / 16;
         // Loop though all blocked Grids
-        blockedGrids.forEach((elem) => {
+        this.blockedGrids.forEach((elem) => {
           if (elem[0] == newX && elem[1] == newY) {
             // If the Grid is blocked:
             collides = true;
@@ -134,7 +135,7 @@ class Player extends GameObject {
         let newY = this.y / 16 + testValue;
         let newX = this.x / 16;
         // Loop though all blocked Grids
-        blockedGrids.forEach((elem) => {
+        this.blockedGrids.forEach((elem) => {
           if (elem[0] == newX && elem[1] == newY) {
             // If the Grid is blocked:
             collides = true;
