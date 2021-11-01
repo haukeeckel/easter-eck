@@ -3,6 +3,7 @@ class Player extends GameObject {
     super(config);
     this.isPlayer = true;
     this.toMove = 0;
+    this.pressedKeys = []
     this.pressedKey = null;
     this.controls = {
       ArrowUp: {
@@ -62,8 +63,8 @@ class Player extends GameObject {
   }
 
   move() {
-    if (this.toMove === 0 && !pressedKeys.lenght) {
-      this.pressedKey = pressedKeys[0];
+    if (this.toMove === 0 && !this.pressedKeys.lenght) {
+      this.pressedKey = this.pressedKeys[0];
     }
     // fires every Frame
     if (!this.isColliding()) {

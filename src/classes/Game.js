@@ -1,7 +1,7 @@
 // Game
 class Game {
-  constructor() {
-    this.canvas = gameArea;
+  constructor(canvas) {
+    this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
 
     this.score = 0;
@@ -38,13 +38,7 @@ class Game {
   gameLoop() {
     const animation = () => {
       // Game Ends
-      if (this.gameOver) {
-        this.handleGameOver();
-      } else {
-        this.animationId = requestAnimationFrame(() => {
-          animation();
-        });
-      }
+      
       // Clear Canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       // Drawings
@@ -67,6 +61,10 @@ class Game {
       // DOM
       score.innerText = `Score: ${this.score}`;
       timer.innerText = `${this.counter} sec`;
+
+      this.animationId = requestAnimationFrame(() => {
+        animation();
+      });
     };
     animation();
   }
@@ -79,18 +77,25 @@ class Game {
     this.counter += 1;
   }
 
-  handleGameOver() {
-    cancelAnimationFrame(this.animationId);
-    summary.innerText = `you've collected ${this.score} of ${this.egg.spawnedEggs}`;
-    gameOverScreen.style.display = "flex";
-    gameArea.style.display = "none";
-    gameStatus.style.display = "none";
-    splashScreen.style.display = "none";
-    return;
-  }
+  activateMovement() {
+    document.addEventListener("keydown", (e) => {
+      const key = e.key;
+      if (!this.player.pressedKeys.includes(key)) {
+        this.player.pressedKeys.unshift(key);
+      }
+    });
+  
+    document.addEventListener("keyup", (e) => {
+      const key = e.key;
+      if (this.player.pressedKeys.includes(key)) {
+        this.player.pressedKeys.splice(this.player.pressedKeys.indexOf(key), 1);
+      }
+    });
+  };
 
   start() {
     // console.log("Hello");
+    this.activateMovement();
     this.gameLoop();
   }
 }
