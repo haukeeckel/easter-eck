@@ -7,6 +7,15 @@ class GameScreen {
     this.splashScreen = document.querySelector("#splash-screen");
     this.playerNameInput = document.querySelector("#player-name-input");
 
+    // Heroes
+    this.hero1 = document.querySelector("#hero1");
+    this.hero2 = document.querySelector("#hero2");
+    this.hero3 = document.querySelector("#hero3");
+    this.hero4 = document.querySelector("#hero4");
+    this.hero5 = document.querySelector("#hero5");
+    this.hero6 = document.querySelector("#hero6");
+    this.selectedHero = null;
+
     // Game
     this.gameStatus = document.querySelector("#game-status");
     this.playerName = document.querySelector("#player-name");
@@ -23,6 +32,7 @@ class GameScreen {
 
   startGame = () => {
     this.game = new Game(this.gameArea);
+    this.game.player.sprite.src = this.selectedHero;
     this.game.start();
 
     this.game.gameTimer = setInterval(() => {
@@ -35,17 +45,35 @@ class GameScreen {
       if (this.game.gameOver) {
         this.handleGameOver();
       } else {
-        
       }
     }, 1000);
   };
 
   initEventlistener() {
+    this.hero1.addEventListener("focus", () => {
+      this.selectedHero = "./images/character/hero1.png";
+    });
+    this.hero2.addEventListener("focus", () => {
+      this.selectedHero = "./images/character/hero2.png";
+    });
+    this.hero3.addEventListener("focus", () => {
+      this.selectedHero = "./images/character/hero3.png";
+    });
+    this.hero4.addEventListener("focus", () => {
+      this.selectedHero = "./images/character/hero3.png";
+    });
+    this.hero5.addEventListener("focus", () => {
+      this.selectedHero = "./images/character/hero5.png";
+    });
+    this.hero6.addEventListener("focus", () => {
+      this.selectedHero = "./images/character/hero6.png";
+    });
+
     this.starter.addEventListener("click", () => {
       this.splashScreen.style.display = "none";
       this.gameArea.style.display = "block";
       this.gameStatus.style.display = "flex";
-      this.playerName.innerText = this.playerNameInput.value
+      this.playerName.innerText = this.playerNameInput.value;
 
       this.startGame();
     });
@@ -54,7 +82,7 @@ class GameScreen {
       this.gameOverScreen.style.display = "none";
       this.gameArea.style.display = "block";
       this.gameStatus.style.display = "flex";
-      this.playerName.innerText = this.playerNameInput.value
+      this.playerName.innerText = this.playerNameInput.value;
 
       this.startGame();
     });
@@ -74,6 +102,4 @@ class GameScreen {
     this.splashScreen.style.display = "none";
     return;
   }
-
-  
 }

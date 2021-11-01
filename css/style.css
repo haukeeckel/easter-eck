@@ -86,6 +86,61 @@ button:hover {
   border-radius: 15px;
 }
 
+.hero {
+  width: 11rem;
+  height: 16rem;
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  image-rendering: pixelated;
+
+  background-color: #2dc5fa;
+  border: 0.8rem solid #fff;
+  border-radius: 15px;
+}
+
+.hero:hover {
+  width: 11rem;
+  height: 16rem;
+
+  background-color: #fff;
+  border: 0.8rem solid #2dc5fa;
+  border-radius: 15px;
+}
+
+.hero:focus {
+  width: 11rem;
+  height: 16rem;
+
+  background-color: #ffffff;
+  border: 0.8rem solid #ff0054;
+  border-radius: 15px;
+}
+
+#hero1 {
+  background-image: url(../images/character/prev_hero1.png);
+}
+
+#hero2 {
+  background-image: url(../images/character/prev_hero2.png);
+}
+
+#hero3 {
+  background-image: url(../images/character/prev_hero3.png);
+}
+
+#hero4 {
+  background-image: url(../images/character/prev_hero4.png);
+}
+
+#hero5 {
+  background-image: url(../images/character/prev_hero5.png);
+}
+
+#hero6 {
+  background-image: url(../images/character/prev_hero6.png);
+}
+
 #quit {
   background-color: #ff0054;
 }

@@ -5,7 +5,7 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
 
     this.score = 0;
-    this.gameDate = Date.now()
+    this.gameDate = Date.now();
 
     this.animationId = null;
     this.gameOver = false;
@@ -15,15 +15,15 @@ class Game {
     this.counter = 45;
 
     this.level = new Level();
-    
+
     this.player = new Player({
-      src: "./images/character/hero.png",
+      src: "./images/character/hero1.png",
       srcX: 3,
       srcY: 0,
       drawX: adjustGrid(1),
       drawY: adjustGrid(1),
       isPlayer: true,
-      blockedGrids: this.level.blockedGrids
+      blockedGrids: this.level.blockedGrids,
     });
 
     this.egg = new Egg({
@@ -31,14 +31,14 @@ class Game {
       srcX: 3,
       srcY: 0,
       drawX: adjustGrid(3),
-      drawY: adjustGrid(2),    
+      drawY: adjustGrid(2),
     });
   }
 
   gameLoop() {
     const animation = () => {
       // Game Ends
-      
+
       // Clear Canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       // Drawings
@@ -84,14 +84,14 @@ class Game {
         this.player.pressedKeys.unshift(key);
       }
     });
-  
+
     document.addEventListener("keyup", (e) => {
       const key = e.key;
       if (this.player.pressedKeys.includes(key)) {
         this.player.pressedKeys.splice(this.player.pressedKeys.indexOf(key), 1);
       }
     });
-  };
+  }
 
   start() {
     // console.log("Hello");
