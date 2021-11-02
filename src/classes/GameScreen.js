@@ -14,7 +14,7 @@ class GameScreen {
     this.hero4 = document.querySelector("#hero4");
     this.hero5 = document.querySelector("#hero5");
     this.hero6 = document.querySelector("#hero6");
-    this.selectedHero = null;
+    this.selectedHero = "./images/character/hero1.png";
 
     // Game
     this.gameStatus = document.querySelector("#game-status");
@@ -71,20 +71,12 @@ class GameScreen {
     });
 
     this.starter.addEventListener("click", () => {
-      this.splashScreen.style.display = "none";
-      this.gameArea.style.display = "block";
-      this.gameStatus.style.display = "flex";
-      this.playerName.innerText = this.playerNameInput.value;
-
+      this.showGameScren();
       this.startGame();
     });
 
     this.restarter.addEventListener("click", () => {
-      this.gameOverScreen.style.display = "none";
-      this.gameArea.style.display = "block";
-      this.gameStatus.style.display = "flex";
-      this.playerName.innerText = this.playerNameInput.value;
-
+      this.showGameScren();
       this.startGame();
     });
 
@@ -101,6 +93,13 @@ class GameScreen {
     if (this.game.counter == 5) {
       this.gameArea.style.animationName = "hurryUp";
     }
+  }
+
+  showGameScren() {
+    this.splashScreen.style.display = "none";
+    this.gameArea.style.display = "block";
+    this.gameStatus.style.display = "flex";
+    this.playerName.innerText = this.playerNameInput.value;
   }
 
   handleGameOver() {

@@ -15,6 +15,7 @@ class Game {
     this.counter = 45;
 
     this.level = new Level();
+    this.stage = 0;
 
     this.player = new Player({
       src: "./images/character/hero1.png",

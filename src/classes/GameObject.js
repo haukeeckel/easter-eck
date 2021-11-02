@@ -13,8 +13,8 @@ class GameObject {
       this.sprite,
       adjustGrid(this.srcX),
       adjustGrid(this.srcY),
-      adjustGrid(1), // TODO animation
-      adjustGrid(2), // TODO animation
+      adjustGrid(1),
+      adjustGrid(2),
       this.x,
       this.y,
       adjustGrid(1),
