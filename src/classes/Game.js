@@ -90,12 +90,14 @@ class Game {
   }
 
   collected() {
-    clearInterval(this.egg.remainingTimeId);
-    this.egg.remainingTime = 3;
-    this.egg.hasSpawnPoint = false;
-    this.collectSound.play();
-    this.score++;
-    this.counter += 1;
+    if (this.stage != 2) {
+      clearInterval(this.egg.remainingTimeId);
+      this.egg.remainingTime = 3;
+      this.egg.hasSpawnPoint = false;
+      this.collectSound.play();
+      this.score++;
+      this.counter += 1;
+    }
   }
 
   getStageOne() {
@@ -106,7 +108,6 @@ class Game {
       this.player.pressedKeys[0] == "x"
     ) {
       this.stage += 1;
-      console.log(this.stage);
     }
   }
 
@@ -214,6 +215,7 @@ class Game {
       this.isGameRunning = true;
       this.level.background.src = "./images/level/bg_basic.png";
       this.level.foreground.src = "./images/level/fg_basic.png";
+      this.egg.sprite.src = "./images/gameObjects/halloween.png";
       this.player.x = adjustGrid(12);
       this.player.y = adjustGrid(13);
       this.player.blockedGrids = this.level.blockedGrids;
@@ -230,7 +232,6 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 2
     ) {
-      this.egg.sprite.src = "./images/gameObjects/halloween.png";
       this.stage += 1;
       console.log(this.stage);
     }
