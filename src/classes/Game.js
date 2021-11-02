@@ -19,7 +19,7 @@ class Game {
 
     this.collectSound = new Audio("./music/collect.wav");
     this.collectSound.muted = true;
-    this.collectSound.volume = 0.05;
+    this.collectSound.volume = 0.8;
 
     this.footstepSound = new Audio("./music/footstep.wav");
     this.footstepSound.muted = true;
@@ -56,7 +56,9 @@ class Game {
       this.ctx.drawImage(this.level.background, 0, 0);
 
       // Eggs
-      this.egg.spawnRandom(this.ctx);
+      if (this.isGameRunning) {
+        this.egg.spawnRandom(this.ctx);
+      }
 
       // Player
       this.player.move();
@@ -70,7 +72,8 @@ class Game {
 
       this.getStageOne();
       this.getStageTwo();
-      this.getStageFive();
+      this.getStageThree();
+      this.getStageFour();
       this.getStageSeven();
       this.getStageEight();
       this.getStageNine();
@@ -116,11 +119,111 @@ class Game {
       this.stage === 1
     ) {
       this.stage += 1;
-      console.log(this.stage);
+      this.egg.spawnedEggs--;
+      this.egg.x = this.canvas.height;
+      this.isGameRunning = false;
+      this.level.background.src = "./images/level/bg_forest.png";
+      this.level.foreground.src = "./images/level/fg_forest.png";
+      this.player.x = adjustGrid(15);
+      this.player.y = adjustGrid(4);
+      this.player.blockedGrids = this.level.forestGrids;
     }
   }
 
-  getStageFive() {
+  getStageThree() {
+    if (this.stage === 2) {
+      let rect = this.canvas.getBoundingClientRect();
+      this.canvas.addEventListener("click", (e) => {
+        if (
+          this.stage != 3 &&
+          e.clientX - rect.left >= 145 &&
+          e.clientX - rect.left <= 255 &&
+          e.clientY - rect.left >= 500 &&
+          e.clientY - rect.left <= 535
+        ) {
+          this.level.background.src = "./images/level/bg_forest_hint.png";
+        } else if (
+          e.clientX - rect.left >= 435 &&
+          e.clientX - rect.left <= 540 &&
+          e.clientY - rect.left >= 310 &&
+          e.clientY - rect.left <= 370
+        ) {
+          this.level.background.src = "./images/level/bg_forest_final.png";
+          this.stage = 3;
+        } else if (this.stage === 3) {
+          this.level.background.src = "./images/level/bg_forest_final.png";
+        } else {
+          this.level.background.src = "./images/level/bg_forest.png";
+        }
+      });
+
+      if (
+        (this.player.x === adjustGrid(15) ||
+          this.player.x === adjustGrid(16)) &&
+        this.player.y === adjustGrid(3)
+      ) {
+        this.player.x = adjustGrid(0);
+        this.player.y = adjustGrid(6);
+        this.player.srcX = 0;
+        this.player.srcY = 0;
+        console.log("pick up yellow flower");
+      } else if (
+        (this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
+        this.player.y === adjustGrid(3)
+      ) {
+        this.player.x = adjustGrid(18);
+        this.player.y = adjustGrid(6);
+        this.player.srcX = 2;
+        this.player.srcY = 0;
+        console.log("pick up yellow flower");
+      } else if (
+        this.player.x === adjustGrid(-1) &&
+        this.player.y === adjustGrid(6)
+      ) {
+        this.player.x = adjustGrid(8);
+        this.player.y = adjustGrid(4);
+        this.player.srcX = 3;
+        this.player.srcY = 0;
+        console.log("pick up yellow flower");
+      } else if (
+        this.player.x === adjustGrid(19) &&
+        this.player.y === adjustGrid(6)
+      ) {
+        this.player.x = adjustGrid(15);
+        this.player.y = adjustGrid(4);
+        this.player.srcX = 3;
+        this.player.srcY = 0;
+        console.log("pick up yellow flower");
+      }
+    }
+    if (
+      (this.player.x === adjustGrid(19) &&
+        this.player.y === adjustGrid(6) &&
+        this.stage == 3) ||
+      (this.player.x === adjustGrid(-1) &&
+        this.player.y === adjustGrid(6) &&
+        this.stage == 3) ||
+      ((this.player.x === adjustGrid(15) || this.player.x === adjustGrid(16)) &&
+        this.player.y === adjustGrid(3) &&
+        this.stage == 3) ||
+      ((this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
+        this.player.y === adjustGrid(3) &&
+        this.stage == 3)
+    ) {
+      this.stage = 4;
+      this.isGameRunning = true;
+      this.level.background.src = "./images/level/bg_basic.png";
+      this.level.foreground.src = "./images/level/fg_basic.png";
+      this.player.x = adjustGrid(12);
+      this.player.y = adjustGrid(13);
+      this.player.blockedGrids = this.level.blockedGrids;
+      this.player.srcX = 1;
+      this.player.srcY = 0;
+      this.counter += 30;
+    }
+  }
+
+  getStageFour() {
     if (
       (this.player.x === adjustGrid(5) || this.player.x === adjustGrid(6)) &&
       this.player.y === adjustGrid(2) &&

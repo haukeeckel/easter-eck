@@ -43,9 +43,11 @@ class GameScreen {
     this.game.start();
 
     this.game.gameTimer = setInterval(() => {
-      if (this.game.isGameRunning && this.game.counter > 1) {
+      if (this.game.counter > 1) {
         this.hurryUp();
-        this.game.counter--;
+        if (this.game.isGameRunning) {
+          this.game.counter--;
+        }
       } else {
         clearInterval(this.game.gameTimer);
         this.game.gameOver = true;
