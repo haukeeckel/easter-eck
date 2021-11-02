@@ -59,6 +59,13 @@ class Game {
       // Foreground
       this.ctx.drawImage(this.level.foreground, 0, 0);
 
+      this.getStageOne();
+      this.getStageTwo();
+      this.getStageFive();
+      this.getStageSeven();
+      this.getStageEight();
+      this.getStageNine();
+
       // DOM
       score.innerText = `Score: ${this.score}`;
       timer.innerText = `${this.counter} sec`;
@@ -78,6 +85,84 @@ class Game {
     this.counter += 1;
   }
 
+  getStageOne() {
+    if (
+      (this.player.x === adjustGrid(9) || this.player.x === adjustGrid(10)) &&
+      this.player.y === adjustGrid(9) &&
+      this.stage === 0 &&
+      this.player.pressedKeys[0] == "x"
+    ) {
+      this.stage += 1;
+      console.log(this.stage)
+    }
+  }
+
+  getStageTwo() {
+    if (
+      (this.player.x === adjustGrid(11) ||
+        this.player.x === adjustGrid(12) ||
+        this.player.x === adjustGrid(13)) &&
+      this.player.y === adjustGrid(14) &&
+      this.stage === 1
+    ) {
+      this.stage += 1;
+      console.log(this.stage);
+    }
+  }
+
+  getStageFive() {
+    if (
+      (this.player.x === adjustGrid(5) ||
+        this.player.x === adjustGrid(6)) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.pressedKeys[0] == "x" &&
+      this.stage === 2
+    ) {
+      this.stage += 1;
+      console.log(this.stage);
+    }
+  }
+
+  getStageSeven() {
+    if (
+      (this.player.x === adjustGrid(14) ||
+        this.player.x === adjustGrid(15) ||
+        this.player.x === adjustGrid(16)) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.pressedKeys[0] == "x" &&
+      this.stage === 3
+    ) {
+      this.stage += 1;
+      console.log(this.stage);
+    }
+  }
+
+  getStageEight() {
+    if (
+      this.player.x === adjustGrid(13) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.pressedKeys[0] == "x" &&
+      this.stage === 4
+    ) {
+      this.stage += 1;
+      console.log(this.stage);
+    }
+  }
+
+  getStageNine() {
+    if (
+      (this.player.x === adjustGrid(14) ||
+        this.player.x === adjustGrid(15) ||
+        this.player.x === adjustGrid(16)) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.pressedKeys[0] == "x" &&
+      this.stage === 5
+    ) {
+      this.stage += 1;
+      console.log(this.stage);
+    }
+  }
   activateMovement() {
     document.addEventListener("keydown", (e) => {
       const key = e.key;

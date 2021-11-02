@@ -18,6 +18,7 @@ class Player extends GameObject {
           [0, 1],
         ],
         movement: ["y", -2],
+        facing: [0, 1]
       },
       ArrowRight: {
         animations: [
@@ -31,6 +32,7 @@ class Player extends GameObject {
           [0, 0],
         ],
         movement: ["x", 2],
+        facing: [0, 0]
       },
       ArrowDown: {
         animations: [
@@ -44,6 +46,7 @@ class Player extends GameObject {
           [0, 3],
         ],
         movement: ["y", 2],
+        facing: [0, 3]
       },
       ArrowLeft: {
         animations: [
@@ -54,9 +57,10 @@ class Player extends GameObject {
           [2, 3],
           [2, 4],
           [2, 5],
-          [0, 1],
+          [0, 2],
         ],
         movement: ["x", -2],
+        facing: [0, 2]
       },
     };
     this.blockedGrids = config.blockedGrids;
@@ -72,7 +76,10 @@ class Player extends GameObject {
       if (this.toMove === 0 && this.validKey()) {
         // set Movement to one Grid
         this.toMove = adjustGrid(1);
-      }
+      } 
+    } else {
+      this.srcX = this.controls[this.pressedKey].facing[1]
+      this.srcY = this.controls[this.pressedKey].facing[0]
     }
     this.moveInGrid();
   }
