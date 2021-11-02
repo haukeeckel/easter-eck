@@ -29,7 +29,8 @@ class GameScreen {
     this.restarter = document.querySelector("#restarter");
     this.quit = document.querySelector("#quit");
 
-    this.music = document.querySelector("audio");
+    this.music = new Audio("./music/gamemusic.mp3");
+    this.music.muted = true;
     this.music.loop = true;
     this.music.volume = 0.05;
   }
@@ -37,8 +38,7 @@ class GameScreen {
   startGame = () => {
     this.game = new Game(this.gameArea);
     this.game.player.sprite.src = this.selectedHero;
-
-    this.music.muted = false;
+    this.unmuteSound();
     this.music.play();
     this.game.start();
 
@@ -56,6 +56,12 @@ class GameScreen {
       }
     }, 1000);
   };
+
+  unmuteSound() {
+    this.music.muted = false;
+    this.game.collectSound.muted = false;
+    this.game.footstepSound.muted = false;
+  }
 
   initEventlistener() {
     this.hero1.addEventListener("focus", () => {

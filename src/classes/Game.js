@@ -17,6 +17,14 @@ class Game {
     this.level = new Level();
     this.stage = 0;
 
+    this.collectSound = new Audio("./music/collect.wav");
+    this.collectSound.muted = true;
+    this.collectSound.volume = 0.05;
+
+    this.footstepSound = new Audio("./music/footstep.wav");
+    this.footstepSound.muted = true;
+    this.footstepSound.volume = 0.015;
+
     this.player = new Player({
       src: "./images/character/hero1.png",
       srcX: 3,
@@ -25,6 +33,7 @@ class Game {
       drawY: adjustGrid(6),
       isPlayer: true,
       blockedGrids: this.level.blockedGrids,
+      footstepSound: this.footstepSound,
     });
 
     this.egg = new Egg({
@@ -81,6 +90,7 @@ class Game {
     clearInterval(this.egg.remainingTimeId);
     this.egg.remainingTime = 3;
     this.egg.hasSpawnPoint = false;
+    this.collectSound.play();
     this.score++;
     this.counter += 1;
   }

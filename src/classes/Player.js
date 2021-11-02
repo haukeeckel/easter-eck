@@ -2,6 +2,7 @@ class Player extends GameObject {
   constructor(config) {
     super(config);
     this.isPlayer = true;
+    this.footstepSound = config.footstepSound;
     this.toMove = 0;
     this.pressedKeys = [];
     this.pressedKey = null;
@@ -76,6 +77,7 @@ class Player extends GameObject {
       if (this.toMove === 0 && this.validKey()) {
         // set Movement to one Grid
         this.toMove = adjustGrid(1);
+        this.footstepSound.play();
       }
     } else {
       this.srcX = this.controls[this.pressedKey].facing[1];
