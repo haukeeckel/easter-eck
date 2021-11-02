@@ -93,7 +93,7 @@ class Game {
       this.player.pressedKeys[0] == "x"
     ) {
       this.stage += 1;
-      console.log(this.stage)
+      console.log(this.stage);
     }
   }
 
@@ -112,12 +112,12 @@ class Game {
 
   getStageFive() {
     if (
-      (this.player.x === adjustGrid(5) ||
-        this.player.x === adjustGrid(6)) &&
+      (this.player.x === adjustGrid(5) || this.player.x === adjustGrid(6)) &&
       this.player.y === adjustGrid(2) &&
       this.player.pressedKeys[0] == "x" &&
       this.stage === 2
     ) {
+      this.egg.sprite.src = "./images/gameObjects/halloween.png";
       this.stage += 1;
       console.log(this.stage);
     }
@@ -132,6 +132,7 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 3
     ) {
+      this.egg.sprite.src = "./images/gameObjects/christmas.png";
       this.stage += 1;
       console.log(this.stage);
     }

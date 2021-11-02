@@ -1,5 +1,4 @@
-window.addEventListener('load', () => {
-  gameScreen = new GameScreen()
-
-  gameScreen.initEventlistener()
-})
+window.addEventListener("load", () => {
+  gameScreen = new GameScreen();
+  gameScreen.initEventlistener();
+});

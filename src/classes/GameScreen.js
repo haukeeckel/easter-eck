@@ -28,11 +28,18 @@ class GameScreen {
     this.summary = document.querySelector("#summary");
     this.restarter = document.querySelector("#restarter");
     this.quit = document.querySelector("#quit");
+
+    this.music = document.querySelector("audio");
+    this.music.loop = true;
+    this.music.volume = 0.05;
   }
 
   startGame = () => {
     this.game = new Game(this.gameArea);
     this.game.player.sprite.src = this.selectedHero;
+
+    this.music.muted = false;
+    this.music.play();
     this.game.start();
 
     this.game.gameTimer = setInterval(() => {
