@@ -96,6 +96,7 @@ class GameScreen {
   }
 
   showGameScren() {
+    this.gameOverScreen.style.display = "none";
     this.splashScreen.style.display = "none";
     this.gameArea.style.display = "block";
     this.gameStatus.style.display = "flex";

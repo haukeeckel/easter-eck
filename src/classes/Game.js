@@ -21,8 +21,8 @@ class Game {
       src: "./images/character/hero1.png",
       srcX: 3,
       srcY: 0,
-      drawX: adjustGrid(1),
-      drawY: adjustGrid(1),
+      drawX: adjustGrid(9),
+      drawY: adjustGrid(6),
       isPlayer: true,
       blockedGrids: this.level.blockedGrids,
     });
