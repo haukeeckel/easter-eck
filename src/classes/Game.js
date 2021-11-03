@@ -66,11 +66,13 @@ class Game {
       this.player.move();
       this.player.draw(this.ctx);
 
-      if (this.player.collectEgg(this.egg.x, this.egg.y)) {
+      if (this.player.collectEgg(this.egg.x, this.egg.y, this.ctx)) {
         this.collected();
       }
       // Foreground
       this.ctx.drawImage(this.level.foreground, 0, 0);
+
+      this.player.drawEmotions(this.ctx);
 
       this.getStageOne();
       this.getStageTwo();
@@ -318,7 +320,7 @@ class Game {
     ) {
       // TODO create DIV with Code
       this.stage += 1;
-      console.log(this.stage);
+      this.printMe();
     }
   }
   activateMovement() {
@@ -334,6 +336,21 @@ class Game {
       if (this.player.pressedKeys.includes(key)) {
         this.player.pressedKeys.splice(this.player.pressedKeys.indexOf(key), 1);
       }
+    });
+  }
+
+  printMe() {
+    let me = [
+      GameScreen.toString(),
+      Game.toString(),
+      Level.toString(),
+      GameObject.toString(),
+      Player.toString(),
+      Egg.toString(),
+      adjustGrid.toString(),
+    ];
+    me.forEach((element) => {
+      console.log(element);
     });
   }
 

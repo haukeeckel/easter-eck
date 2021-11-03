@@ -2,11 +2,19 @@ class Player extends GameObject {
   constructor(config) {
     super(config);
     this.isPlayer = true;
+
     this.footstepSound = config.footstepSound;
+
+    this.emotion = new Image();
+    this.emotion.src = "./images/character/collect.png";
+    this.emotionId = null;
+    this.emotionReady = false;
+    this.emotionCounter = 1;
+
     this.toMove = 0;
     this.pressedKeys = [];
     this.pressedKey = null;
-    this.controls = {
+    this.controlls = {
       ArrowUp: {
         animations: [
           [0, 1],
@@ -80,8 +88,8 @@ class Player extends GameObject {
         this.footstepSound.play();
       }
     } else {
-      this.srcX = this.controls[this.pressedKey].facing[1];
-      this.srcY = this.controls[this.pressedKey].facing[0];
+      this.srcX = this.controlls[this.pressedKey].facing[1];
+      this.srcY = this.controlls[this.pressedKey].facing[0];
     }
     this.moveInGrid();
   }
@@ -90,8 +98,8 @@ class Player extends GameObject {
   moveInGrid() {
     // if the Player has toMove, change this.x/y by 1/-1
     if (this.toMove > 0) {
-      const axis = this.controls[this.pressedKey].movement[0];
-      const value = this.controls[this.pressedKey].movement[1];
+      const axis = this.controlls[this.pressedKey].movement[0];
+      const value = this.controlls[this.pressedKey].movement[1];
 
       // this.x or this.y + 1 or +-1
       this[axis] += value;
@@ -105,29 +113,29 @@ class Player extends GameObject {
 
   animate() {
     if (this.toMove > 14) {
-      this.srcX = this.controls[this.pressedKey].animations[0][1];
-      this.srcY = this.controls[this.pressedKey].animations[0][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[0][1];
+      this.srcY = this.controlls[this.pressedKey].animations[0][0] * 2;
     } else if (this.toMove > 12) {
-      this.srcX = this.controls[this.pressedKey].animations[1][1];
-      this.srcY = this.controls[this.pressedKey].animations[1][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[1][1];
+      this.srcY = this.controlls[this.pressedKey].animations[1][0] * 2;
     } else if (this.toMove > 10) {
-      this.srcX = this.controls[this.pressedKey].animations[2][1];
-      this.srcY = this.controls[this.pressedKey].animations[2][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[2][1];
+      this.srcY = this.controlls[this.pressedKey].animations[2][0] * 2;
     } else if (this.toMove > 8) {
-      this.srcX = this.controls[this.pressedKey].animations[3][1];
-      this.srcY = this.controls[this.pressedKey].animations[3][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[3][1];
+      this.srcY = this.controlls[this.pressedKey].animations[3][0] * 2;
     } else if (this.toMove > 6) {
-      this.srcX = this.controls[this.pressedKey].animations[4][1];
-      this.srcY = this.controls[this.pressedKey].animations[4][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[4][1];
+      this.srcY = this.controlls[this.pressedKey].animations[4][0] * 2;
     } else if (this.toMove > 4) {
-      this.srcX = this.controls[this.pressedKey].animations[5][1];
-      this.srcY = this.controls[this.pressedKey].animations[5][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[5][1];
+      this.srcY = this.controlls[this.pressedKey].animations[5][0] * 2;
     } else if (this.toMove > 2) {
-      this.srcX = this.controls[this.pressedKey].animations[6][1];
-      this.srcY = this.controls[this.pressedKey].animations[6][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[6][1];
+      this.srcY = this.controlls[this.pressedKey].animations[6][0] * 2;
     } else {
-      this.srcX = this.controls[this.pressedKey].animations[0][1];
-      this.srcY = this.controls[this.pressedKey].animations[0][0] * 2;
+      this.srcX = this.controlls[this.pressedKey].animations[0][1];
+      this.srcY = this.controlls[this.pressedKey].animations[0][0] * 2;
     }
   }
 
@@ -137,8 +145,8 @@ class Player extends GameObject {
 
     if (this.validKey()) {
       // Get the next aimed Axis and Value
-      let testAxis = this.controls[this.pressedKey].movement[0];
-      let testValue = this.controls[this.pressedKey].movement[1] / 2;
+      let testAxis = this.controlls[this.pressedKey].movement[0];
+      let testValue = this.controlls[this.pressedKey].movement[1] / 2;
 
       if (testAxis == "x") {
         let newX = this.x / 16 + testValue;
@@ -168,11 +176,45 @@ class Player extends GameObject {
 
   collectEgg(eggX, eggY) {
     if (eggX == this.x && eggY == this.y) {
+      this.emotionReady = true;
+      clearInterval(this.emotionId);
+      this.emotionInterval();
       return true;
     }
   }
 
+  drawEmotions(ctx) {
+    if (this.emotionCounter > 0) {
+      if (this.emotionReady === true) {
+        ctx.drawImage(
+          this.emotion,
+          0,
+          0,
+          adjustGrid(1),
+          adjustGrid(1),
+          this.x,
+          this.y - 7,
+          adjustGrid(1),
+          adjustGrid(1)
+        );
+      }
+    } else {
+      clearInterval(this.emotionId);
+      this.emotionCounter = 1;
+      this.emotionReady = false;
+    }
+  }
+
+  emotionInterval() {
+    if (this.emotionCounter > 0) {
+      this.emotionId = setInterval(() => {
+        this.emotionCounter--;
+        console.log(this.emotionCounter);
+      }, 1000);
+    }
+  }
+
   validKey() {
-    return Object.keys(this.controls).includes(this.pressedKey);
+    return Object.keys(this.controlls).includes(this.pressedKey);
   }
 }

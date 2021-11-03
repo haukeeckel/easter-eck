@@ -41,6 +41,7 @@ class GameScreen {
     this.unmuteSound();
     this.music.play();
     this.game.start();
+    this.game.printMe();
 
     this.game.gameTimer = setInterval(() => {
       if (this.game.counter > 1) {
