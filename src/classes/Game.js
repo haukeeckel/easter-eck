@@ -76,6 +76,8 @@ class Game {
       this.getStageTwo();
       this.getStageThree();
       this.getStageFour();
+      this.getStageFive();
+      this.getStageSix();
       this.getStageSeven();
       this.getStageEight();
       this.getStageNine();
@@ -210,43 +212,69 @@ class Game {
         console.log("pick up yellow flower");
       }
     }
-    if (
-      (this.player.x === adjustGrid(19) &&
-        this.player.y === adjustGrid(6) &&
-        this.stage == 3) ||
-      (this.player.x === adjustGrid(-1) &&
-        this.player.y === adjustGrid(6) &&
-        this.stage == 3) ||
-      ((this.player.x === adjustGrid(15) || this.player.x === adjustGrid(16)) &&
-        this.player.y === adjustGrid(3) &&
-        this.stage == 3) ||
-      ((this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
-        this.player.y === adjustGrid(3) &&
-        this.stage == 3)
-    ) {
-      this.stage = 4;
-      this.isGameRunning = true;
-      this.level.background.src = "./images/level/bg_basic.png";
-      this.level.foreground.src = "./images/level/fg_basic.png";
-      this.egg.sprite.src = "./images/gameObjects/halloween.png";
-      this.player.x = adjustGrid(12);
-      this.player.y = adjustGrid(13);
-      this.player.blockedGrids = this.level.blockedGrids;
-      this.player.srcX = 1;
-      this.player.srcY = 0;
-      this.counter += 30;
-    }
   }
 
   getStageFour() {
+    if (this.stage === 3) {
+      if (
+        (this.player.x === adjustGrid(19) && this.player.y === adjustGrid(6)) ||
+        (this.player.x === adjustGrid(-1) && this.player.y === adjustGrid(6)) ||
+        ((this.player.x === adjustGrid(15) ||
+          this.player.x === adjustGrid(16)) &&
+          this.player.y === adjustGrid(3)) ||
+        ((this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
+          this.player.y === adjustGrid(3))
+      ) {
+        this.stage = 4;
+        this.isGameRunning = true;
+        // TODO HALLOWEEN INTERIOR
+        this.level.background.src = "./images/level/bg_basic_halloween.png";
+        this.level.foreground.src = "./images/level/fg_basic_halloween.png";
+        this.egg.sprite.src = "./images/gameObjects/halloween.png";
+        this.player.x = adjustGrid(12);
+        this.player.y = adjustGrid(13);
+        this.level.blockedGrids.push(
+          [11, 14],
+          [12, 14],
+          [13, 14],
+          [8, 4],
+          [9, 9],
+          [10, 9]
+        );
+        this.player.blockedGrids = this.level.blockedGrids;
+        this.player.srcX = 1;
+        this.player.srcY = 0;
+        this.counter += 30;
+      }
+    }
+  }
+
+  getStageFive() {
     if (
       (this.player.x === adjustGrid(5) || this.player.x === adjustGrid(6)) &&
       this.player.y === adjustGrid(2) &&
       this.player.pressedKeys[0] == "x" &&
-      this.stage === 2
+      this.stage === 4
     ) {
       this.stage += 1;
-      console.log(this.stage);
+      // TODO WITHOUT CABINET
+      this.level.background.src =
+        "./images/level/bg_basic_halloween_finished.png";
+      this.level.blockedGrids.splice(0, 2);
+      this.player.blockedGrids = this.level.blockedGrids;
+    }
+  }
+
+  getStageSix() {
+    if (
+      this.player.x === adjustGrid(6) &&
+      this.player.y === adjustGrid(1) &&
+      this.stage === 5
+    ) {
+      this.stage += 1;
+      // TODO Cake
+      // Place Character
+      // Create new room
     }
   }
 
@@ -259,9 +287,9 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 3
     ) {
+      // TODO new Sprite, Monitor
       this.egg.sprite.src = "./images/gameObjects/christmas.png";
       this.stage += 1;
-      console.log(this.stage);
     }
   }
 
@@ -273,6 +301,7 @@ class Game {
       this.stage === 4
     ) {
       this.stage += 1;
+      // TODO let Printer rotate
       console.log(this.stage);
     }
   }
@@ -287,6 +316,7 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 5
     ) {
+      // TODO create DIV with Code
       this.stage += 1;
       console.log(this.stage);
     }
