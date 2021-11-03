@@ -16,6 +16,8 @@ class Game {
 
     this.level = new Level();
     this.stage = 0;
+    this.isClicked = false;
+    this.myClick = {};
 
     this.collectSound = new Audio("./music/collect.wav");
     this.collectSound.muted = true;
@@ -133,21 +135,32 @@ class Game {
 
   getStageThree() {
     if (this.stage === 2) {
-      let rect = this.canvas.getBoundingClientRect();
-      this.canvas.addEventListener("click", (e) => {
+      this.canvas.addEventListener("mousedown", (event) => {
+        this.myClick = event;
+        this.isClicked = true;
+      });
+
+      if (this.isClicked) {
+        const canvasLeft = this.canvas.offsetLeft + this.canvas.clientLeft;
+        const canvasTop = this.canvas.offsetTop + this.canvas.clientTop;
+        let canvasX = this.myClick.pageX - canvasLeft;
+        let canvasY = this.myClick.pageY - canvasTop;
+
         if (
           this.stage != 3 &&
-          e.clientX - rect.left >= 145 &&
-          e.clientX - rect.left <= 255 &&
-          e.clientY - rect.left >= 500 &&
-          e.clientY - rect.left <= 535
+          canvasX >= 145 &&
+          canvasX <= 255 &&
+          canvasY >= 515 &&
+          canvasY <= 550
         ) {
           this.level.background.src = "./images/level/bg_forest_hint.png";
         } else if (
-          e.clientX - rect.left >= 435 &&
-          e.clientX - rect.left <= 540 &&
-          e.clientY - rect.left >= 310 &&
-          e.clientY - rect.left <= 370
+          this.level.background.src.includes("hint") &&
+          this.stage != 3 &&
+          canvasX >= 430 &&
+          canvasX <= 540 &&
+          canvasY >= 320 &&
+          canvasY <= 385
         ) {
           this.level.background.src = "./images/level/bg_forest_final.png";
           this.stage = 3;
@@ -156,7 +169,7 @@ class Game {
         } else {
           this.level.background.src = "./images/level/bg_forest.png";
         }
-      });
+      }
 
       if (
         (this.player.x === adjustGrid(15) ||
