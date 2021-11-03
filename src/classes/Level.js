@@ -1,11 +1,15 @@
 class Level {
   constructor() {
+    // ---------------------------------------------------------
+    // Images
+    // ---------------------------------------------------------
     this.background = new Image();
     this.background.src = "./images/level/bg_basic.png";
-
     this.foreground = new Image();
     this.foreground.src = "./images/level/fg_basic.png";
-
+    // ---------------------------------------------------------
+    // Blocked Grids
+    // ---------------------------------------------------------
     this.blockedGrids = [
       //[x,y]
       [5, 1],

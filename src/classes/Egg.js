@@ -2,13 +2,13 @@ class Egg extends GameObject {
   constructor(config) {
     super(config);
     this.spawnedEggs = 0;
-
     this.remainingTime = 3;
     this.remainingTimeId = null;
-
+    // ---------------------------------------------------------
+    // Appearance
+    // ---------------------------------------------------------
     this.hasSpawnPoint = false;
     this.spawnPoint = [];
-
     this.isSpawnTop = true;
     this.spawnPointsTop = [
       [2, 5],

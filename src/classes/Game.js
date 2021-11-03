@@ -1,40 +1,57 @@
 // Game
 class Game {
   constructor(canvas) {
+    // ---------------------------------------------------------
+    // Canvas
+    // ---------------------------------------------------------
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
-
+    // ---------------------------------------------------------
+    // Score Board
+    // ---------------------------------------------------------
     this.score = 0;
     this.gameDate = Date.now();
-
+    // ---------------------------------------------------------
+    // Gameloop and End
+    // ---------------------------------------------------------
     this.animationId = null;
     this.gameOver = false;
-
     this.gameTimer = null;
     this.isGameRunning = true;
     this.counter = 45;
-
+    // ---------------------------------------------------------
+    // FPS
+    // ---------------------------------------------------------
+    this.fps = 60;
+    this.now = null;
+    this.then = Date.now();
+    this.interval = 1000 / this.fps;
+    this.delta = null;
+    // ---------------------------------------------------------
+    // Level
+    // ---------------------------------------------------------
     this.level = new Level();
     this.stage = 0;
     this.isClicked = false;
     this.myClick = {};
-
+    // ---------------------------------------------------------
+    // Audio
+    // ---------------------------------------------------------
     this.hintSound = new Audio("./music/hint.wav");
     this.hintSound.muted = true;
     this.hintSound.volume = 0.8;
-
     this.stageSound = new Audio("./music/stage.wav");
     this.stageSound.muted = true;
     this.stageSound.volume = 0.8;
-
     this.collectSound = new Audio("./music/collect.wav");
     this.collectSound.muted = true;
     this.collectSound.volume = 0.8;
-
     this.footstepSound = new Audio("./music/footstep.wav");
     this.footstepSound.muted = true;
     this.footstepSound.volume = 0.015;
-
+    // ---------------------------------------------------------
+    // Game Objects
+    // ---------------------------------------------------------
     this.player = new Player({
       src: "./images/character/hero1.png",
       srcX: 3,
@@ -45,7 +62,6 @@ class Game {
       blockedGrids: this.level.blockedGrids,
       footstepSound: this.footstepSound,
     });
-
     this.egg = new Egg({
       src: "./images/gameObjects/eggs.png",
       srcX: 3,
@@ -57,51 +73,74 @@ class Game {
 
   gameLoop() {
     const animation = () => {
-      // Game Ends
-
-      // Clear Canvas
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      // Drawings
-      // Background
-      this.ctx.drawImage(this.level.background, 0, 0);
-
-      // Eggs
-      if (this.isGameRunning) {
-        this.egg.spawnRandom(this.ctx);
-      }
-
-      // Player
-      this.player.move();
-      this.player.draw(this.ctx);
-
-      if (this.player.collectEgg(this.egg.x, this.egg.y, this.ctx)) {
-        this.collected();
-      }
-      // Foreground
-      this.ctx.drawImage(this.level.foreground, 0, 0);
-
-      this.player.drawEmotions(this.ctx);
-
-      this.getStageOne();
-      this.getStageTwo();
-      this.getStageThree();
-      this.getStageFour();
-      this.getStageFive();
-      this.getStageSix();
-      this.getStageSeven();
-      this.getStageEight();
-      this.getStageNine();
-
-      // DOM
-      score.innerText = `Score: ${this.score}`;
-      timer.innerText = `${this.counter} sec`;
+      this.now = Date.now();
+      this.delta = this.now - this.then;
 
       this.animationId = requestAnimationFrame(() => {
         animation();
       });
+      
+      if (this.delta > this.interval) {
+        this.then = this.now - (this.delta % this.interval);
+        console.log("test");
+        // ---------------------------------------------------------
+        // Clear Canvas
+        // ---------------------------------------------------------
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        // ---------------------------------------------------------
+        // Drawings
+        // ---------------------------------------------------------
+        // Background
+        this.ctx.drawImage(this.level.background, 0, 0);
+        // Eggs
+        if (this.isGameRunning) {
+          this.egg.spawnRandom(this.ctx);
+        }
+        // Player
+        this.player.move();
+        this.player.draw(this.ctx);
+        // Collectibles
+        if (this.player.collectEgg(this.egg.x, this.egg.y, this.ctx)) {
+          this.collected();
+        }
+        // Foreground
+        this.ctx.drawImage(this.level.foreground, 0, 0);
+        // Emotions
+        this.player.drawEmotions(this.ctx);
+        // Easter Eggs
+        this.getStageOne();
+        this.getStageTwo();
+        this.getStageThree();
+        this.getStageFour();
+        this.getStageFive();
+        this.getStageSix();
+        this.getStageSeven();
+        this.getStageEight();
+        this.getStageNine();
+        // DOM
+        score.innerText = `Score: ${this.score}`;
+        timer.innerText = `${this.counter} sec`;
+        // Recursion
+      }
     };
     animation();
   }
+
+  // update time stuffs
+
+  // Just `then = now` is not enough.
+  // Lets say we set fps at 10 which means
+  // each frame must take 100ms
+  // Now frame executes in 16ms (60fps) so
+  // the loop iterates 7 times (16*7 = 112ms) until
+  // delta > interval === true
+  // Eventually this lowers down the FPS as
+  // 112*10 = 1120ms (NOT 1000ms).
+  // So we have to get rid of that extra 12ms
+  // by subtracting delta (112) % interval (100).
+  // Hope that makes sense.
+
+  // ... Code for Drawing the Frame ...
 
   collected() {
     if (this.stage != 2) {
@@ -114,7 +153,9 @@ class Game {
       this.counter += 1;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage1
+  // ---------------------------------------------------------
   getStageOne() {
     if (
       (this.player.x === adjustGrid(9) || this.player.x === adjustGrid(10)) &&
@@ -134,7 +175,9 @@ class Game {
       this.stage += 1;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage2
+  // ---------------------------------------------------------
   getStageTwo() {
     if (
       (this.player.x === adjustGrid(11) ||
@@ -164,7 +207,9 @@ class Game {
       this.player.blockedGrids = this.level.forestGrids;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage3
+  // ---------------------------------------------------------
   getStageThree() {
     if (this.stage === 2) {
       this.canvas.addEventListener("mousedown", (event) => {
@@ -248,7 +293,9 @@ class Game {
       }
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage4
+  // ---------------------------------------------------------
   getStageFour() {
     if (this.stage === 3) {
       if (
@@ -284,7 +331,9 @@ class Game {
       }
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage5
+  // ---------------------------------------------------------
   getStageFive() {
     if (
       (this.player.x === adjustGrid(5) || this.player.x === adjustGrid(6)) &&
@@ -308,7 +357,9 @@ class Game {
       this.player.blockedGrids = this.level.blockedGrids;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage6
+  // ---------------------------------------------------------
   getStageSix() {
     if (
       this.player.x === adjustGrid(6) &&
@@ -327,7 +378,9 @@ class Game {
       this.player.blockedGrids = this.level.portalGrids;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage7
+  // ---------------------------------------------------------
   getStageSeven() {
     if (
       this.player.x === adjustGrid(9) &&
@@ -346,19 +399,20 @@ class Game {
       this.stage += 1;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage8
+  // ---------------------------------------------------------
   getStageEight() {
     if (
       this.player.x === adjustGrid(9) &&
       this.player.y === adjustGrid(4) &&
       this.stage === 7
     ) {
-      this.stage += this.stageSound.play();
-      1;
+      this.stage += 1;
       // TODO WITHOUT CABINET
+      this.stageSound.play();
       this.isGameRunning = true;
-      this.level.background.src =
-        "./images/level/bg_basic_halloween_finished.png";
+      this.level.background.src = "./images/level/bg_portal_finished.png";
       this.level.foreground.src = "./images/level/fg_basic_halloween.png";
       this.egg.sprite.src = "./images/gameObjects/halloween.png";
       this.player.x = adjustGrid(6);
@@ -370,7 +424,9 @@ class Game {
       this.counter += 15;
     }
   }
-
+  // ---------------------------------------------------------
+  // Stage9
+  // ---------------------------------------------------------
   getStageNine() {
     if (
       (this.player.x === adjustGrid(14) ||
@@ -378,15 +434,44 @@ class Game {
         this.player.x === adjustGrid(16)) &&
       this.player.y === adjustGrid(2) &&
       this.player.y === adjustGrid(2) &&
-      this.player.pressedKeys[0] == "x" &&
-      this.stage === 5
+      this.stage === 8
     ) {
-      // TODO create DIV with Code
+      this.hintSound.play();
+    }
+    if (
+      (this.player.x === adjustGrid(14) ||
+        this.player.x === adjustGrid(15) ||
+        this.player.x === adjustGrid(16)) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.y === adjustGrid(2) &&
+      this.player.pressedKeys[0] == "x" &&
+      this.stage === 8
+    ) {
       this.stageSound.play();
       this.stage += 1;
       this.printMe();
     }
   }
+  // ---------------------------------------------------------
+  // Cherry on Top
+  // ---------------------------------------------------------
+  printMe() {
+    let me = [
+      GameScreen.toString(),
+      Game.toString(),
+      Level.toString(),
+      GameObject.toString(),
+      Player.toString(),
+      Egg.toString(),
+      adjustGrid.toString(),
+    ];
+    me.forEach((element) => {
+      console.log(element);
+    });
+  }
+  // ---------------------------------------------------------
+  // Movement
+  // ---------------------------------------------------------
   activateMovement() {
     document.addEventListener("keydown", (e) => {
       const key = e.key;
@@ -402,24 +487,10 @@ class Game {
       }
     });
   }
-
-  printMe() {
-    let me = [
-      GameScreen.toString(),
-      Game.toString(),
-      Level.toString(),
-      GameObject.toString(),
-      Player.toString(),
-      Egg.toString(),
-      adjustGrid.toString(),
-    ];
-    me.forEach((element) => {
-      console.log(element);
-    });
-  }
-
+  // ---------------------------------------------------------
+  // Start
+  // ---------------------------------------------------------
   start() {
-    // console.log("Hello");
     this.activateMovement();
     this.gameLoop();
   }
