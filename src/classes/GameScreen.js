@@ -32,7 +32,7 @@ class GameScreen {
     this.music = new Audio("./music/gamemusic.mp3");
     this.music.muted = true;
     this.music.loop = true;
-    this.music.volume = 0.05;
+    this.music.volume = 0.08;
   }
 
   startGame = () => {
@@ -64,6 +64,8 @@ class GameScreen {
     this.music.muted = false;
     this.game.collectSound.muted = false;
     this.game.footstepSound.muted = false;
+    this.game.hintSound.muted = false;
+    this.game.stageSound.muted = false;
   }
 
   initEventlistener() {

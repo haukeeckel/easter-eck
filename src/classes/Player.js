@@ -6,7 +6,7 @@ class Player extends GameObject {
     this.footstepSound = config.footstepSound;
 
     this.emotion = new Image();
-    this.emotion.src = "./images/character/collect.png";
+    this.emotion.src = null;
     this.emotionId = null;
     this.emotionReady = false;
     this.emotionCounter = 1;
@@ -179,6 +179,7 @@ class Player extends GameObject {
       this.emotionReady = true;
       clearInterval(this.emotionId);
       this.emotionInterval();
+
       return true;
     }
   }

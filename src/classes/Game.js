@@ -19,6 +19,14 @@ class Game {
     this.isClicked = false;
     this.myClick = {};
 
+    this.hintSound = new Audio("./music/hint.wav");
+    this.hintSound.muted = true;
+    this.hintSound.volume = 0.8;
+
+    this.stageSound = new Audio("./music/stage.wav");
+    this.stageSound.muted = true;
+    this.stageSound.volume = 0.8;
+
     this.collectSound = new Audio("./music/collect.wav");
     this.collectSound.muted = true;
     this.collectSound.volume = 0.8;
@@ -98,6 +106,7 @@ class Game {
   collected() {
     if (this.stage != 2) {
       clearInterval(this.egg.remainingTimeId);
+      this.player.emotion.src = "./images/character/collect.png";
       this.egg.remainingTime = 3;
       this.egg.hasSpawnPoint = false;
       this.collectSound.play();
@@ -110,9 +119,18 @@ class Game {
     if (
       (this.player.x === adjustGrid(9) || this.player.x === adjustGrid(10)) &&
       this.player.y === adjustGrid(9) &&
+      this.stage === 0
+    ) {
+      this.hintSound.play();
+    }
+
+    if (
+      (this.player.x === adjustGrid(9) || this.player.x === adjustGrid(10)) &&
+      this.player.y === adjustGrid(9) &&
       this.stage === 0 &&
       this.player.pressedKeys[0] == "x"
     ) {
+      this.stageSound.play();
       this.stage += 1;
     }
   }
@@ -122,9 +140,19 @@ class Game {
       (this.player.x === adjustGrid(11) ||
         this.player.x === adjustGrid(12) ||
         this.player.x === adjustGrid(13)) &&
+      (this.player.y === adjustGrid(12) || this.player.y === adjustGrid(13)) &&
+      this.stage === 1
+    ) {
+      this.hintSound.play();
+    }
+    if (
+      (this.player.x === adjustGrid(11) ||
+        this.player.x === adjustGrid(12) ||
+        this.player.x === adjustGrid(13)) &&
       this.player.y === adjustGrid(14) &&
       this.stage === 1
     ) {
+      this.stageSound.play();
       this.stage += 1;
       this.egg.spawnedEggs--;
       this.egg.x = this.canvas.height;
@@ -168,6 +196,7 @@ class Game {
         ) {
           this.level.background.src = "./images/level/bg_forest_final.png";
           this.stage = 3;
+          this.stageSound.play();
         } else if (this.stage === 3) {
           this.level.background.src = "./images/level/bg_forest_final.png";
         } else {
@@ -184,11 +213,13 @@ class Game {
         this.player.y = adjustGrid(6);
         this.player.srcX = 0;
         this.player.srcY = 0;
+        this.hintSound.play();
         console.log("pick up yellow flower");
       } else if (
         (this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
         this.player.y === adjustGrid(3)
       ) {
+        this.hintSound.play();
         this.player.x = adjustGrid(18);
         this.player.y = adjustGrid(6);
         this.player.srcX = 2;
@@ -198,6 +229,7 @@ class Game {
         this.player.x === adjustGrid(-1) &&
         this.player.y === adjustGrid(6)
       ) {
+        this.hintSound.play();
         this.player.x = adjustGrid(8);
         this.player.y = adjustGrid(4);
         this.player.srcX = 3;
@@ -207,6 +239,7 @@ class Game {
         this.player.x === adjustGrid(19) &&
         this.player.y === adjustGrid(6)
       ) {
+        this.hintSound.play();
         this.player.x = adjustGrid(15);
         this.player.y = adjustGrid(4);
         this.player.srcX = 3;
@@ -227,6 +260,7 @@ class Game {
         ((this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
           this.player.y === adjustGrid(3))
       ) {
+        this.stageSound.play();
         this.stage = 4;
         this.isGameRunning = true;
         // TODO HALLOWEEN INTERIOR
@@ -255,9 +289,17 @@ class Game {
     if (
       (this.player.x === adjustGrid(5) || this.player.x === adjustGrid(6)) &&
       this.player.y === adjustGrid(2) &&
+      this.stage === 4
+    ) {
+      this.hintSound.play();
+    }
+    if (
+      (this.player.x === adjustGrid(5) || this.player.x === adjustGrid(6)) &&
+      this.player.y === adjustGrid(2) &&
       this.player.pressedKeys[0] == "x" &&
       this.stage === 4
     ) {
+      this.stageSound.play();
       this.stage += 1;
       // TODO WITHOUT CABINET
       this.level.background.src =
@@ -273,6 +315,7 @@ class Game {
       this.player.y === adjustGrid(1) &&
       this.stage === 5
     ) {
+      this.stageSound.play();
       this.stage += 1;
       // TODO Cake
       // Place Character
@@ -289,6 +332,7 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 3
     ) {
+      this.stageSound.play();
       // TODO new Sprite, Monitor
       this.egg.sprite.src = "./images/gameObjects/christmas.png";
       this.stage += 1;
@@ -302,7 +346,8 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 4
     ) {
-      this.stage += 1;
+      this.stage += this.stageSound.play();
+      1;
       // TODO let Printer rotate
       console.log(this.stage);
     }
@@ -319,6 +364,7 @@ class Game {
       this.stage === 5
     ) {
       // TODO create DIV with Code
+      this.stageSound.play();
       this.stage += 1;
       this.printMe();
     }
