@@ -280,7 +280,7 @@ class Game {
         this.player.blockedGrids = this.level.blockedGrids;
         this.player.srcX = 1;
         this.player.srcY = 0;
-        this.counter += 30;
+        this.counter += 15;
       }
     }
   }
@@ -317,39 +317,57 @@ class Game {
     ) {
       this.stageSound.play();
       this.stage += 1;
-      // TODO Cake
-      // Place Character
-      // Create new room
+      this.egg.spawnedEggs--;
+      this.egg.x = this.canvas.height;
+      this.isGameRunning = false;
+      this.level.background.src = "./images/level/bg_portal.png";
+      this.level.foreground.src = "./images/level/fg_portal.png";
+      this.player.x = adjustGrid(9);
+      this.player.y = adjustGrid(5);
+      this.player.blockedGrids = this.level.portalGrids;
     }
   }
 
   getStageSeven() {
     if (
-      (this.player.x === adjustGrid(14) ||
-        this.player.x === adjustGrid(15) ||
-        this.player.x === adjustGrid(16)) &&
-      this.player.y === adjustGrid(2) &&
-      this.player.pressedKeys[0] == "x" &&
-      this.stage === 3
+      this.player.x === adjustGrid(9) &&
+      this.player.y === adjustGrid(7) &&
+      this.stage === 6
+    ) {
+      this.hintSound.play();
+    }
+    if (
+      this.player.x === adjustGrid(9) &&
+      this.player.y === adjustGrid(7) &&
+      this.stage === 6 &&
+      this.player.pressedKeys[0] == "x"
     ) {
       this.stageSound.play();
-      // TODO new Sprite, Monitor
-      this.egg.sprite.src = "./images/gameObjects/christmas.png";
       this.stage += 1;
     }
   }
 
   getStageEight() {
     if (
-      this.player.x === adjustGrid(13) &&
-      this.player.y === adjustGrid(2) &&
-      this.player.pressedKeys[0] == "x" &&
-      this.stage === 4
+      this.player.x === adjustGrid(9) &&
+      this.player.y === adjustGrid(4) &&
+      this.stage === 7
     ) {
       this.stage += this.stageSound.play();
       1;
-      // TODO let Printer rotate
-      console.log(this.stage);
+      // TODO WITHOUT CABINET
+      this.isGameRunning = true;
+      this.level.background.src =
+        "./images/level/bg_basic_halloween_finished.png";
+      this.level.foreground.src = "./images/level/fg_basic_halloween.png";
+      this.egg.sprite.src = "./images/gameObjects/halloween.png";
+      this.player.x = adjustGrid(6);
+      this.player.y = adjustGrid(1);
+      this.level.blockedGrids.push([6, 0]);
+      this.player.blockedGrids = this.level.blockedGrids;
+      this.player.srcX = 3;
+      this.player.srcY = 0;
+      this.counter += 15;
     }
   }
 
