@@ -292,7 +292,6 @@ class Game {
         this.stageSound.play();
         this.stage = 4;
         this.isGameRunning = true;
-        // TODO HALLOWEEN INTERIOR
         this.level.background.src = "./images/level/bg_basic_halloween.png";
         this.level.foreground.src = "./images/level/fg_basic_halloween.png";
         this.egg.sprite.src = "./images/gameObjects/halloween.png";
@@ -332,7 +331,6 @@ class Game {
     ) {
       this.stageSound.play();
       this.stage += 1;
-      // TODO WITHOUT CABINET
       this.level.background.src =
         "./images/level/bg_basic_halloween_finished.png";
       this.level.blockedGrids.splice(0, 2);
@@ -391,7 +389,6 @@ class Game {
       this.stage === 7
     ) {
       this.stage += 1;
-      // TODO WITHOUT CABINET
       this.stageSound.play();
       this.isGameRunning = true;
       this.level.background.src = "./images/level/bg_portal_finished.png";
@@ -429,6 +426,7 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 8
     ) {
+      this.counter += 15;
       this.stageSound.play();
       this.stage += 1;
       this.printMe();

@@ -90,7 +90,7 @@ button:hover {
 }
 
 #quit {
-  background-color: #ffbd00;
+  background-color: #ff0054;
 }
 
 #quit:hover {
@@ -200,7 +200,7 @@ button:hover {
   height: 90vh;
   width: 70vw;
 
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
 

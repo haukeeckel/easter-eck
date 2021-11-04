@@ -93,9 +93,9 @@ class GameScreen {
 
   handleGameOver() {
     cancelAnimationFrame(this.game.animationId);
-    this.summary.innerText = `you've collected ${this.game.score} of ${this.game.egg.spawnedEggs}`;
+    this.summary.innerText = `you've reached ${this.game.stage} of 9 and collected ${this.game.score} of ${this.game.egg.spawnedEggs} Eggs`;
     this.gameOverScreen.style.display = "flex";
-    
+
     this.timer.style.animationName = "none";
     this.gameArea.style.animationName = "none";
 
@@ -141,10 +141,10 @@ class GameScreen {
 
     // Game Buttons
     this.instructionsClose.addEventListener("click", () => {
-      this.instructionsScreen.style.display = "none"
+      this.instructionsScreen.style.display = "none";
     });
     this.instructionsBtn.addEventListener("click", () => {
-      this.instructionsScreen.style.display = "flex"
+      this.instructionsScreen.style.display = "flex";
     });
     this.starter.addEventListener("click", () => {
       this.showGameScren();
@@ -164,10 +164,10 @@ class GameScreen {
     // Sounds
     this.muteBtn.addEventListener("click", () => {
       if (this.muteBtn.src.includes("unmute.png")) {
-        this.music.pause()
+        this.music.pause();
         this.muteBtn.src = "./images/mute.png";
       } else {
-        this.music.play()
+        this.music.play();
         this.muteBtn.src = "./images/unmute.png";
       }
     });
