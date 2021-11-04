@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
 
+/*------------------------------------------------
+ /--- General 
+  /------------------------------------------------*/
 * {
   overflow: hidden;
   box-sizing: border-box;
@@ -31,7 +34,57 @@ h1 {
   margin-block-end: 2rem;
 }
 
-/* SPLASH SCREEN */
+button {
+  width: 14.5rem;
+  height: 4.5rem;
+
+  margin: 0 1rem;
+  margin-block-start: 3rem;
+  margin-block-end: 3rem;
+
+  font-size: 2rem;
+  color: #ffffff;
+
+  background-color: #2dc5fa;
+  border: 0.5rem solid #ffffff;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+/*------------------------------------------------
+ /--- BUTTONS
+  /------------------------------------------------*/
+button:hover {
+  width: 14.5rem;
+  height: 4.5rem;
+
+  font-size: 2rem;
+  color: #2dc5fa;
+
+  background-color: #ffffff;
+  border: 0.5rem solid #2dc5fa;
+  border-radius: 15px;
+}
+
+#quit {
+  background-color: #ff0054;
+}
+
+#quit:hover {
+  width: 14.5rem;
+  height: 4.5rem;
+
+  font-size: 2rem;
+  color: #ff0054;
+
+  background-color: #ffffff;
+  border: 0.5rem solid #ff0054;
+  border-radius: 15px;
+}
+
+/*------------------------------------------------
+ /--- SPLASH SCREEN
+  /------------------------------------------------*/
 #splash-screen {
   width: 100vw;
   height: 100vh;
@@ -57,35 +110,9 @@ h1 {
   border: none;
 }
 
-button {
-  width: 14.5rem;
-  height: 4.5rem;
-
-  margin: 0 1rem;
-  margin-block-start: 3rem;
-  margin-block-end: 3rem;
-
-  font-size: 2rem;
-  color: #ffffff;
-
-  background-color: #2dc5fa;
-  border: 0.5rem solid #ffffff;
-  border-radius: 15px;
-  backdrop-filter: blur(10px);
-}
-
-button:hover {
-  width: 14.5rem;
-  height: 4.5rem;
-
-  font-size: 2rem;
-  color: #2dc5fa;
-
-  background-color: #ffffff;
-  border: 0.5rem solid #2dc5fa;
-  border-radius: 15px;
-}
-
+/*------------------------------------------------
+ /--- HERO SELECTION
+  /------------------------------------------------*/
 .hero {
   width: 11rem;
   height: 16rem;
@@ -141,23 +168,9 @@ button:hover {
   background-image: url(../images/character/prev_hero6.png);
 }
 
-#quit {
-  background-color: #ff0054;
-}
-
-#quit:hover {
-  width: 14.5rem;
-  height: 4.5rem;
-
-  font-size: 2rem;
-  color: #ff0054;
-
-  background-color: #ffffff;
-  border: 0.5rem solid #ff0054;
-  border-radius: 15px;
-}
-
-/* GAME STATUS */
+/*------------------------------------------------
+ /--- GAME STATUS
+  /------------------------------------------------*/
 #game-status {
   width: 100vw;
   height: 4rem;
@@ -173,6 +186,7 @@ button:hover {
   background: -webkit-linear-gradient(to bottom, #434343, #000000);
   background: linear-gradient(to bottom, #434343, #000000);
 }
+
 .header-element {
   width: 33%;
   display: flex;
@@ -186,27 +200,19 @@ button:hover {
   margin-right: 3rem;
 }
 
-/* #player-name {
-  
-} */
-
 #timer {
   box-sizing: content-box;
   animation-duration: 25s;
 }
 
-/* #score {
-  
-} */
-
-#easter-eggs {
+#settings {
   position: absolute;
   top: 75px;
   left: 15px;
 
-  display: none; /* init.js will set it to flex  */
+  display: none;
   flex-direction: row;
-  height: 4rem;
+  height: 5rem;
 
   justify-content: space-between;
   align-items: center;
@@ -219,7 +225,15 @@ button:hover {
   backdrop-filter: blur(10px);
 }
 
-/* GAME AREA */
+#mute {
+  height: 4.5rem;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+/*------------------------------------------------
+ /--- GAME AREA
+  /------------------------------------------------*/
 canvas {
   display: none;
   width: 912px;
@@ -231,7 +245,9 @@ canvas {
   animation-direction: reverse;
 }
 
-/* GAME OVER */
+/*------------------------------------------------
+ /--- GAME OVER
+  /------------------------------------------------*/
 #game-over-screen {
   width: 100vw;
   height: 100vh;
@@ -244,13 +260,16 @@ canvas {
   background: #434343;
 }
 
-
+/*------------------------------------------------
+ /--- ANIMATIONS
+  /------------------------------------------------*/
 @keyframes hurryUp {
   from {
     font-size: 3rem;
     transform: rotate(-5.5deg);
   } 
   10% {
+    color: #ffbd00;
     transform: rotate(5.5deg);
   }
   20% {
@@ -280,6 +299,7 @@ canvas {
     transform: rotate(-5.5deg);
   }
   90% {
+    color: #ffbd00;
     font-size: 2.5rem;
     transform: rotate(5deg);
   }

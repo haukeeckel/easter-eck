@@ -75,14 +75,13 @@ class Game {
     const animation = () => {
       this.now = Date.now();
       this.delta = this.now - this.then;
-
+      // Recursion
       this.animationId = requestAnimationFrame(() => {
         animation();
       });
-      
+
       if (this.delta > this.interval) {
         this.then = this.now - (this.delta % this.interval);
-        console.log("test");
         // ---------------------------------------------------------
         // Clear Canvas
         // ---------------------------------------------------------
@@ -120,27 +119,10 @@ class Game {
         // DOM
         score.innerText = `Score: ${this.score}`;
         timer.innerText = `${this.counter} sec`;
-        // Recursion
       }
     };
     animation();
   }
-
-  // update time stuffs
-
-  // Just `then = now` is not enough.
-  // Lets say we set fps at 10 which means
-  // each frame must take 100ms
-  // Now frame executes in 16ms (60fps) so
-  // the loop iterates 7 times (16*7 = 112ms) until
-  // delta > interval === true
-  // Eventually this lowers down the FPS as
-  // 112*10 = 1120ms (NOT 1000ms).
-  // So we have to get rid of that extra 12ms
-  // by subtracting delta (112) % interval (100).
-  // Hope that makes sense.
-
-  // ... Code for Drawing the Frame ...
 
   collected() {
     if (this.stage != 2) {

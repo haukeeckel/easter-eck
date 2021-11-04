@@ -25,6 +25,7 @@ class GameScreen {
     this.timer = document.querySelector("#timer");
     this.score = document.querySelector("#score");
     this.gameArea = document.querySelector("#game-area");
+    this.settings = document.querySelector("#settings");
     // ---------------------------------------------------------
     // Game Over
     // ---------------------------------------------------------
@@ -35,6 +36,7 @@ class GameScreen {
     // ---------------------------------------------------------
     // Music
     // ---------------------------------------------------------
+    this.muteBtn = document.querySelector("#mute");
     this.music = new Audio("./music/gamemusic.mp3");
     this.music.muted = true;
     this.music.loop = true;
@@ -45,6 +47,8 @@ class GameScreen {
   // ---------------------------------------------------------
   showGameScren() {
     this.gameOverScreen.style.display = "none";
+    this.settings.style.display = "flex";
+    this.muteBtn.src = "./images/unmute.png";
     this.splashScreen.style.display = "none";
     this.gameArea.style.display = "block";
     this.gameStatus.style.display = "flex";
@@ -87,9 +91,12 @@ class GameScreen {
   handleGameOver() {
     cancelAnimationFrame(this.game.animationId);
     this.summary.innerText = `you've collected ${this.game.score} of ${this.game.egg.spawnedEggs}`;
+    this.gameOverScreen.style.display = "flex";
+    
     this.timer.style.animationName = "none";
     this.gameArea.style.animationName = "none";
-    this.gameOverScreen.style.display = "flex";
+
+    this.settings.style.display = "none";
     this.gameArea.style.display = "none";
     this.gameStatus.style.display = "none";
     this.splashScreen.style.display = "none";
@@ -129,7 +136,7 @@ class GameScreen {
       this.selectedHero = "./images/character/hero6.png";
     });
 
-    // Buttons
+    // Game Buttons
     this.starter.addEventListener("click", () => {
       this.showGameScren();
       this.startGame();
@@ -139,8 +146,21 @@ class GameScreen {
       this.startGame();
     });
     this.quit.addEventListener("click", () => {
+      this.music.pause();
       this.gameOverScreen.style.display = "none";
+      this.settings.style.display = "none";
       this.splashScreen.style.display = "flex";
+    });
+
+    // Sounds
+    this.muteBtn.addEventListener("click", () => {
+      if (this.muteBtn.src.includes("unmute.png")) {
+        this.music.pause()
+        this.muteBtn.src = "./images/mute.png";
+      } else {
+        this.music.play()
+        this.muteBtn.src = "./images/unmute.png";
+      }
     });
   }
 }
