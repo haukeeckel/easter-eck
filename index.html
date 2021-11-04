@@ -25,12 +25,11 @@
     <main>
       <!-- Sounds -->
       <div id="settings">
-        <img id="mute" src="./images/unmute.png" alt="">
+        <img id="mute" src="./images/unmute.png" alt="" />
       </div>
 
       <!-- Splash Screen -->
       <div id="splash-screen">
-        <div id="instructions"></div>
         <h1>Easter Eck</h1>
 
         <h2>who are you?</h2>
@@ -45,10 +44,34 @@
           <button id="hero5" class="hero"></button>
           <button id="hero6" class="hero"></button>
         </div>
-
-        <button id="starter">Start</button>
+        <div class="buttons">
+          <button id="starter">Let's goo!</button>
+          <button id="instructions">Read Me!</button>
+        </div>
       </div>
-
+      <!-- Instructions -->
+      <div id="instructions-screen">
+        <img id="instructions-close" src="./images/close 1.png" alt="" />
+        <section id="instructions-title">
+          <h1>Instructions</h1>
+        </section>
+        <div id="instructions-sections">
+          <section>
+            <h2>Movement</h2>
+            <p>press the Arrow-Keys to Move</p>
+            <img src="./images/1670503.png" alt="">
+            <p>you will sometimes need the X key</p>
+          </section>
+          <section>
+            <h2>Goal</h2>
+            <p>Collect as many eggs as possible in 45sec. Collecting Eggs increases points and some bonus time. <br><br> p.s. Maybe you will find more than eggs.</p>
+          </section>
+          <section>
+            <h2>Hints</h2>
+            <p>Please do not leave the room. It is dangerous there. Only in the room you are safe.... Oh, but if you go, take the key with you.</p>
+          </section>
+        </div>
+      </div>
       <!-- Game -->
       <canvas width="304px" height="240px" id="game-area"></canvas>
 

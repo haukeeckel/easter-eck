@@ -6,6 +6,9 @@ class GameScreen {
     // ---------------------------------------------------------
     this.starter = document.querySelector("#starter");
     this.splashScreen = document.querySelector("#splash-screen");
+    this.instructionsBtn = document.querySelector("#instructions");
+    this.instructionsScreen = document.querySelector("#instructions-screen");
+    this.instructionsClose = document.querySelector("#instructions-close");
     this.playerNameInput = document.querySelector("#player-name-input");
     // ---------------------------------------------------------
     // Heroes
@@ -137,6 +140,12 @@ class GameScreen {
     });
 
     // Game Buttons
+    this.instructionsClose.addEventListener("click", () => {
+      this.instructionsScreen.style.display = "none"
+    });
+    this.instructionsBtn.addEventListener("click", () => {
+      this.instructionsScreen.style.display = "flex"
+    });
     this.starter.addEventListener("click", () => {
       this.showGameScren();
       this.startGame();

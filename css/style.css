@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
 
 /*------------------------------------------------
  /--- General 
@@ -12,9 +13,10 @@
   margin-block-end: 0;
   margin-block-start: 0;
 
-  font-family: "Share Tech Mono", monospace;
+  font-family: "VT323", monospace; /* "Share Tech Mono", monospace; */
+  font-size: larger;
   color: #cccccc;
-  font-weight: bold;
+  letter-spacing: 2px;
 }
 /* GENERAL */
 body {
@@ -32,8 +34,16 @@ main {
 h1 {
   font-size: 3rem;
   margin-block-end: 2rem;
+  font-weight: normal;
 }
 
+h2 {
+  font-weight: normal;
+}
+
+/*------------------------------------------------
+ /--- BUTTONS
+  /------------------------------------------------*/
 button {
   width: 14.5rem;
   height: 4.5rem;
@@ -51,9 +61,6 @@ button {
   backdrop-filter: blur(10px);
 }
 
-/*------------------------------------------------
- /--- BUTTONS
-  /------------------------------------------------*/
 button:hover {
   width: 14.5rem;
   height: 4.5rem;
@@ -66,8 +73,24 @@ button:hover {
   border-radius: 15px;
 }
 
+#instructions {
+  background-color: #ffbd00;
+}
+
+#instructions:hover {
+  width: 14.5rem;
+  height: 4.5rem;
+
+  font-size: 2rem;
+  color: #ffbd00;
+
+  background-color: #ffffff;
+  border: 0.5rem solid #ffbd00;
+  border-radius: 15px;
+}
+
 #quit {
-  background-color: #ff0054;
+  background-color: #ffbd00;
 }
 
 #quit:hover {
@@ -98,13 +121,14 @@ button:hover {
 }
 
 #player-name-input {
-  width: 20rem;
-  height: 2.5rem;
+  margin-block-start: 1.5rem;
 
-  padding-left: 1rem;
+  width: 20rem;
+  height: 3rem;
 
   color: #434343;
   font-size: 1.4rem;
+  text-align: center;
 
   border-radius: 15px;
   border: none;
@@ -169,6 +193,71 @@ button:hover {
 }
 
 /*------------------------------------------------
+ /--- INSTRUCTIONS
+  /------------------------------------------------*/
+#instructions-screen {
+  position: absolute;
+  height: 90vh;
+  width: 70vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+#instructions-close {
+  margin-right: 1.5rem;
+  margin-block-start: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 5rem;
+}
+
+#instructions-title h1 {
+  margin-block-start: 2rem;
+  color: #ffbd00;
+}
+
+#instructions-sections {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+#instructions-sections section {
+  padding: 0.5rem;
+  width: 28%;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+#instructions-sections section h2 {
+  color: #1f1c15;
+  margin-block-end: 2rem;
+}
+
+#instructions-sections section p {
+  color: #1f1c15;
+  font-size: 2rem;
+  margin-block-end: 2rem;
+}
+
+#instructions-sections section img {
+  width: 100%;
+  height: auto;
+}
+
+/*------------------------------------------------
  /--- GAME STATUS
   /------------------------------------------------*/
 #game-status {
@@ -205,6 +294,9 @@ button:hover {
   animation-duration: 25s;
 }
 
+/*------------------------------------------------
+ /--- SETTINGS
+  /------------------------------------------------*/
 #settings {
   position: absolute;
   top: 75px;
@@ -267,7 +359,7 @@ canvas {
   from {
     font-size: 3rem;
     transform: rotate(-5.5deg);
-  } 
+  }
   10% {
     color: #ffbd00;
     transform: rotate(5.5deg);
