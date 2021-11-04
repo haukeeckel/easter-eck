@@ -217,6 +217,7 @@ button:hover {
   top: 0;
   right: 0;
   height: 5rem;
+  cursor: pointer;
 }
 
 #instructions-title h1 {
@@ -295,13 +296,11 @@ button:hover {
 }
 
 /*------------------------------------------------
- /--- SETTINGS
+ /--- SUBHEADER
   /------------------------------------------------*/
-#settings {
+.subheader {
   position: absolute;
-  top: 75px;
-  left: 15px;
-
+  
   display: none;
   flex-direction: row;
   height: 5rem;
@@ -317,10 +316,63 @@ button:hover {
   backdrop-filter: blur(10px);
 }
 
-#mute {
-  height: 4.5rem;
+/*------------------------------------------------
+ /--- SETTINGS
+  /------------------------------------------------*/
+#settings {
+  top: 75px;
+  left: 15px;
+}
+
+#settings img {
+  max-height: 4.5rem;
+  max-width: 4.5rem;
   margin: 0 0.5rem;
+}
+
+#mute {
   cursor: pointer;
+}
+/*------------------------------------------------
+ /--- ACHIEVMENTS
+  /------------------------------------------------*/
+#achievements {
+  display: none;
+  top: 75px;
+  right: 15px
+}
+
+#achievements img {
+  max-height: 3.5rem;
+  max-width: 3.5rem;
+  margin: 0 0.5rem;
+}
+#achievement-one {
+  display: none;
+}
+#achievement-two {
+  display: none;
+}
+#achievement-three {
+  display: none;
+}
+#achievement-four {
+  display: none;
+}
+#achievement-five {
+  display: none;
+}
+#achievement-six {
+  display: none;
+}
+#achievement-seven {
+  display: none;
+}
+#achievement-eight {
+  display: none;
+}
+#achievement-nine {
+  display: none;
 }
 
 /*------------------------------------------------

@@ -51,7 +51,7 @@ class GameScreen {
   showGameScren() {
     this.gameOverScreen.style.display = "none";
     this.settings.style.display = "flex";
-    this.muteBtn.src = "./images/unmute.png";
+    this.muteBtn.src = "./images/global/unmute.png";
     this.splashScreen.style.display = "none";
     this.gameArea.style.display = "block";
     this.gameStatus.style.display = "flex";
@@ -103,6 +103,17 @@ class GameScreen {
     this.gameArea.style.display = "none";
     this.gameStatus.style.display = "none";
     this.splashScreen.style.display = "none";
+
+    this.game.achievements.style.display = "none"
+    this.game.achievementOne.style.display = "none"
+    this.game.achievementTwo.style.display = "none"
+    this.game.achievementThree.style.display = "none"
+    this.game.achievementFour.style.display = "none"
+    this.game.achievementFive.style.display = "none" 
+    this.game.achievementSix.style.display = "none" 
+    this.game.achievementSeven.style.display = "none" 
+    this.game.achievementEight.style.display = "none"
+    this.game.achievementNine.style.display = "none"
     return;
   }
   // ---------------------------------------------------------
@@ -165,10 +176,10 @@ class GameScreen {
     this.muteBtn.addEventListener("click", () => {
       if (this.muteBtn.src.includes("unmute.png")) {
         this.music.pause();
-        this.muteBtn.src = "./images/mute.png";
+        this.muteBtn.src = "./images/global/mute.png";
       } else {
         this.music.play();
-        this.muteBtn.src = "./images/unmute.png";
+        this.muteBtn.src = "./images/global/unmute.png";
       }
     });
   }
