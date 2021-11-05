@@ -166,8 +166,8 @@ class Game {
       this.stage === 0 &&
       this.player.pressedKeys[0] == "x"
     ) {
-      this.achievements.style.display = "flex"
-      this.achievementOne.style.display = "block"
+      this.achievements.style.display = "flex";
+      this.achievementOne.style.display = "block";
       this.stageSound.play();
       this.stage += 1;
     }
@@ -193,7 +193,7 @@ class Game {
       this.stage === 1
     ) {
       this.stageSound.play();
-      this.achievementTwo.style.display = "block"
+      this.achievementTwo.style.display = "block";
       this.stage += 1;
       this.egg.spawnedEggs--;
       this.egg.x = this.canvas.height;
@@ -237,7 +237,7 @@ class Game {
           canvasY >= 320 &&
           canvasY <= 385
         ) {
-          this.achievementThree.style.display = "block"
+          this.achievementThree.style.display = "block";
           this.level.background.src = "./images/level/bg_forest_final.png";
           this.stage = 3;
           this.stageSound.play();
@@ -306,7 +306,7 @@ class Game {
         ((this.player.x === adjustGrid(8) || this.player.x === adjustGrid(9)) &&
           this.player.y === adjustGrid(3))
       ) {
-        this.achievementFour.style.display = "block"
+        this.achievementFour.style.display = "block";
         this.stageSound.play();
         this.stage = 4;
         this.isGameRunning = true;
@@ -347,7 +347,7 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 4
     ) {
-      this.achievementFive.style.display = "block"
+      this.achievementFive.style.display = "block";
       this.stageSound.play();
       this.stage += 1;
       this.level.background.src =
@@ -365,7 +365,7 @@ class Game {
       this.player.y === adjustGrid(1) &&
       this.stage === 5
     ) {
-      this.achievementSix.style.display = "block"
+      this.achievementSix.style.display = "block";
       this.stageSound.play();
       this.stage += 1;
       this.egg.spawnedEggs--;
@@ -395,7 +395,7 @@ class Game {
       this.stage === 6 &&
       this.player.pressedKeys[0] == "x"
     ) {
-      this.achievementSeven.style.display = "block"
+      this.achievementSeven.style.display = "block";
       this.stageSound.play();
       this.stage += 1;
     }
@@ -409,7 +409,7 @@ class Game {
       this.player.y === adjustGrid(4) &&
       this.stage === 7
     ) {
-      this.achievementEight.style.display = "block"
+      this.achievementEight.style.display = "block";
       this.stage += 1;
       this.stageSound.play();
       this.isGameRunning = true;
@@ -448,7 +448,7 @@ class Game {
       this.player.pressedKeys[0] == "x" &&
       this.stage === 8
     ) {
-      this.achievementNine.style.display = "block"
+      this.achievementNine.style.display = "block";
       this.counter += 15;
       this.stageSound.play();
       this.stage += 1;

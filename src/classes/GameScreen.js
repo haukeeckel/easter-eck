@@ -37,6 +37,15 @@ class GameScreen {
     this.restarter = document.querySelector("#restarter");
     this.quit = document.querySelector("#quit");
     // ---------------------------------------------------------
+    // Highscore
+    // ---------------------------------------------------------
+    this.highscoreContainer = document.querySelector("#highscore-container");
+    this.highscore = document.querySelector("#highscore");
+    this.highscoreSection = document.querySelector("#highscore-section");
+    this.highscoreClose = document.querySelector("#highscore-close");
+    this.highscoreTable = document.querySelector("#highscore-table");
+    this.localStorage = localStorage;
+    // ---------------------------------------------------------
     // Music
     // ---------------------------------------------------------
     this.muteBtn = document.querySelector("#mute");
@@ -48,7 +57,7 @@ class GameScreen {
   // ---------------------------------------------------------
   // Game
   // ---------------------------------------------------------
-  showGameScren() {
+  showGameScreen() {
     this.gameOverScreen.style.display = "none";
     this.settings.style.display = "flex";
     this.muteBtn.src = "./images/global/unmute.png";
@@ -93,7 +102,14 @@ class GameScreen {
 
   handleGameOver() {
     cancelAnimationFrame(this.game.animationId);
-    this.summary.innerText = `you've reached ${this.game.stage} of 9 and collected ${this.game.score} of ${this.game.egg.spawnedEggs} Eggs`;
+    this.summary.innerText = `you've reached stage ${this.game.stage} of 9 and collected ${this.game.score} of ${this.game.egg.spawnedEggs} Eggs`;
+
+    this.saveHighscore(
+      this.playerNameInput.value,
+      this.game.score,
+      this.game.stage
+    );
+
     this.gameOverScreen.style.display = "flex";
 
     this.timer.style.animationName = "none";
@@ -104,18 +120,52 @@ class GameScreen {
     this.gameStatus.style.display = "none";
     this.splashScreen.style.display = "none";
 
-    this.game.achievements.style.display = "none"
-    this.game.achievementOne.style.display = "none"
-    this.game.achievementTwo.style.display = "none"
-    this.game.achievementThree.style.display = "none"
-    this.game.achievementFour.style.display = "none"
-    this.game.achievementFive.style.display = "none" 
-    this.game.achievementSix.style.display = "none" 
-    this.game.achievementSeven.style.display = "none" 
-    this.game.achievementEight.style.display = "none"
-    this.game.achievementNine.style.display = "none"
+    this.game.achievements.style.display = "none";
+    this.game.achievementOne.style.display = "none";
+    this.game.achievementTwo.style.display = "none";
+    this.game.achievementThree.style.display = "none";
+    this.game.achievementFour.style.display = "none";
+    this.game.achievementFive.style.display = "none";
+    this.game.achievementSix.style.display = "none";
+    this.game.achievementSeven.style.display = "none";
+    this.game.achievementEight.style.display = "none";
+    this.game.achievementNine.style.display = "none";
     return;
   }
+  // ---------------------------------------------------------
+  // Highscore
+  // ---------------------------------------------------------
+  saveHighscore(name, score, stage) {
+    let highscore = JSON.parse(this.localStorage.getItem("highscore")) ?? [];
+    let summary = { name, score, stage };
+
+    highscore.push(summary);
+
+    console.log(highscore);
+
+    highscore.sort((a, b) => {
+      a.score > b.score ? 1 : a.score < b.score ? -1 : 0;
+    });
+
+    if (highscore.length < 5) {
+      this.localStorage.setItem("highscore", JSON.stringify(highscore));
+    } else {
+      highscore.sort((a, b) => b.score - a.score);
+      highscore.pop();
+      this.localStorage.setItem("highscore", JSON.stringify(highscore));
+    }
+  }
+
+  getHighscore() {
+    let highscore = JSON.parse(this.localStorage.getItem("highscore"));
+    this.highscoreTable.innerHTML = highscore
+      .map(
+        (score) =>
+          `<tr><td>${score.name}</td><td>${score.score}</td><td>${score.stage}</td></tr>`
+      )
+      .join("");
+  }
+
   // ---------------------------------------------------------
   // Music
   // ---------------------------------------------------------
@@ -154,17 +204,38 @@ class GameScreen {
     this.instructionsClose.addEventListener("click", () => {
       this.instructionsScreen.style.display = "none";
     });
+
     this.instructionsBtn.addEventListener("click", () => {
       this.instructionsScreen.style.display = "flex";
     });
+
+    this.highscore.addEventListener("click", () => {
+      this.highscoreSection.style.display = "flex";
+      this.getHighscore();
+      if (this.game.isGameRunning) {
+        this.game.isGameRunning = false;
+        cancelAnimationFrame(this.game.animationId);
+      }
+    });
+
+    this.highscoreClose.addEventListener("click", () => {
+      this.highscoreSection.style.display = "none";
+      if (!this.game.isGameRunning && this.gameArea.style.display == "block") {
+        this.game.isGameRunning = true;
+        this.game.start();
+      }
+    });
+
     this.starter.addEventListener("click", () => {
-      this.showGameScren();
+      this.showGameScreen();
       this.startGame();
     });
+
     this.restarter.addEventListener("click", () => {
-      this.showGameScren();
+      this.showGameScreen();
       this.startGame();
     });
+
     this.quit.addEventListener("click", () => {
       this.music.pause();
       this.gameOverScreen.style.display = "none";

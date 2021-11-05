@@ -15,34 +15,48 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 
 ## Data structure
 
-### ./src/main.js
+### ./src/init.js
 - window.addEventListener("load", () => {})
-- activateMovement()
-- startGame()
-- EventListener
-
-### ./src/domElements.js
-- querySelectors
 
 ### ./src/helper.js
 - adjustGrid()
-- controlls{}
-- blockedGrids[]
-- eggGrids[]
+
+### ./src/classes/Game.js
+- GameScreen
+- constructor()
+- showGameScreen()
+- saveHighscore()
+- startGame()
+- hurryUp()
+- handleGameOver()
+- unmudeSound()
+- initEventlistener()
 
 ### ./src/classes/Game.js
 - Game
 - constructor()
 - gameLoop()
 - collected()
-- handleGameOver()
+- getStageOne()
+- getStageTwo()
+- getStageThree()
+- getStageFour()
+- getStageFive()
+- getStageSix()
+- getStageSeven()
+- getStageEight()
+- getStageNine()
+- printMe()
+- activateMovement()
 - start()
+
+### ./src/classes/Level.js
+- constructor()
 
 ### ./src/classes/GameObject.js
 - GameObject
 - constructor()
 - draw()
-- collectEgg()
   
 ### ./src/classes/Player.js
 - Player extends GameObject
@@ -50,6 +64,11 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 - move()
 - moveInGrid()
 - isColliding()
+- animate()
+- validKey()
+- collectEgg()
+- drawEmotions()
+- emotionInterval()
   
 ### ./src/classes/Egg.js
 - Egg extends GameObject
@@ -58,3 +77,4 @@ Easter Eck is a game in which the player has to catch as many as possible easter
 - setLiveTime()
 - getSpawnPoint()
 
+[Slides](https://docs.google.com/presentation/d/1vU__mjmmOyo2of1115_BaPXWQfEKdNAOfEuT1TiqINE/edit?usp=sharing)

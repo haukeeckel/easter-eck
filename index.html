@@ -27,7 +27,7 @@
       <div id="settings" class="subheader">
         <img id="mute" src="./images/global/unmute.png" alt="" />
       </div>
-
+      <!-- Achievements -->
       <div id="achievements" class="subheader">
         <img id="achievement-one" src="./images/global/stage1.png" alt="" />
         <img id="achievement-two" src="./images/global/stage2.png" alt="" />
@@ -57,40 +57,11 @@
           <button id="hero6" class="hero"></button>
         </div>
         <div class="buttons">
-          <button id="starter">Let's goo!</button>
+          <button id="starter">Let's gooo!</button>
           <button id="instructions">Read Me!</button>
         </div>
       </div>
-      <!-- Instructions -->
-      <div id="instructions-screen">
-        <img id="instructions-close" src="./images/global/close 1.png" alt="" />
-        <section id="instructions-title">
-          <h1>Instructions</h1>
-        </section>
-        <div id="instructions-sections">
-          <section>
-            <h2>Movement</h2>
-            <p>press the Arrow-Keys to Move</p>
-            <img src="./images/global/1670503.png" alt="" />
-            <p>you will sometimes need the X key</p>
-          </section>
-          <section>
-            <h2>Goal</h2>
-            <p>
-              Collect as many eggs as possible in 45sec. Collecting Eggs
-              increases points and some bonus time. <br /><br />
-              p.s. Maybe you will find more than eggs.
-            </p>
-          </section>
-          <section>
-            <h2>Hints</h2>
-            <p>
-              Please do not leave the room. It is dangerous there. Only in the
-              room you are safe.... Oh, but if you go, take the key with you.
-            </p>
-          </section>
-        </div>
-      </div>
+
       <!-- Game -->
       <canvas width="304px" height="240px" id="game-area"></canvas>
 
@@ -104,8 +75,55 @@
           <button id="quit">Quit</button>
         </div>
       </div>
-    </main>
 
+      <!-- Instructions -->
+      <div id="instructions-screen">
+        <img id="instructions-close" src="./images/global/close 1.png" alt="" />
+        <section id="instructions-title">
+          <h1>Instructions</h1>
+        </section>
+        <div id="instructions-sections">
+          <section>
+            <h2>Movement</h2>
+            <p>press the Arrow-Keys to move</p>
+            <img src="./images/global/1670503.png" alt="" />
+            <p>you will sometimes need the X key</p>
+          </section>
+          <section>
+            <h2>Goal</h2>
+            <p>
+              Collect as many eggs as possible in 45sec. Collecting eggs
+              increases points and some bonus time. <br /><br />
+              p.s. Maybe you will find more than eggs.
+            </p>
+          </section>
+          <section>
+            <h2>Hints</h2>
+            <p>
+              Please do not leave the room. It is dangerous there. Only in the
+              room you are safe.... Oh, but if you go, take the key with you.
+            </p>
+          </section>
+        </div>
+      </div>
+
+      <!-- Highscore -->
+      <div id="highscore-container" class="subheader">
+        <img id="highscore" src="./images/global/highscore.png" alt="" />
+      </div>
+
+      <div id="highscore-section">
+        <img id="highscore-close" src="./images/global/close 1.png" alt="" />
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Stage</th>
+          </tr>
+        </table>
+        <table id="highscore-table"></table>
+      </div>
+    </main>
     <!-- Scripts -->
     <script src="./src/helper.js"></script>
     <script src="./src/classes/Level.js"></script>
